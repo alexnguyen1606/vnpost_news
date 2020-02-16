@@ -1,0 +1,29 @@
+.news-detail{
+
+}
+.news-detail h1{
+    font-size: 20px;
+    font-weight: bold;
+}
+.news-date{
+    font-size: 13px;
+    font-weight: normal;
+    color: #B4B4B4;
+}
+.news-detail .news-date label{
+    font-size: 13px;
+    font-weight: normal;
+    color: #B4B4B4;
+}
+.img-title {
+    color: #B4B4B4;
+}
+.view{
+    font-size: 13px;
+    font-weight: normal;
+    color: #B4B4B4;
+}
+.author{
+    color: #1785E4;
+    float: right;
+}
