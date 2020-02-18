@@ -13,7 +13,7 @@
                     <li><a href="">Giới thiệu</a></li>
                     <li><a href="">Hỏi đáp</a></li>
                     <li><a href="">Liên hệ</a></li>
-                    <li><a href="">Login</a></li>
+                    <li><a href="/login">Login</a></li>
                     <li>
                         <div class="language-object">
                                 <span title="Tiếng việt ( Việt Nam )">

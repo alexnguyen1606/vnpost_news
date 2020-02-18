@@ -7,6 +7,7 @@ import com.vnpost.repository.ParagraphRepository;
 import com.vnpost.service.IParagraphService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public class ParagraphService implements IParagraphService {
         return paragraphRepository.findByNewsId(newsId).stream()
                 .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
     }
-
+    @Transactional
     @Override
     public ParagraphDTO save(ParagraphDTO paragraphDTO) {
         if (paragraphDTO.getId()==null){

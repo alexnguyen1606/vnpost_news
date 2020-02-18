@@ -1,5 +1,6 @@
 package com.vnpost.service.impl;
 
+import com.vnpost.constant.SystemConstant;
 import com.vnpost.converter.NewsConverter;
 import com.vnpost.dto.NewsDTO;
 import com.vnpost.entity.NewsEntity;
@@ -8,6 +9,7 @@ import com.vnpost.service.INewsService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,11 +27,11 @@ public class NewsService implements INewsService {
     }
 
     @Override
-    public List<NewsDTO> findAllBySubCategoryId(Long subCategoryId) {
-
-        return newsRepository.findAllBySubCategoryId(subCategoryId)
-                .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+    public List<NewsDTO> findAllByCategoryId(Long categoryId) {
+        return newsRepository.findAllByCategoryId(categoryId).stream()
+                .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
     }
+
 
     @Override
     public List<NewsDTO> findAllByStatus(Integer status) {
@@ -38,11 +40,11 @@ public class NewsService implements INewsService {
     }
 
     @Override
-    public List<NewsDTO> findAllBySubCategoryIdAndStatus(Long subCategoryId, Integer status) {
-        return newsRepository.findAllBySubCategoryIdAndStatus(subCategoryId,status)
+    public List<NewsDTO> findAllByCategoryIdAndStatus(Long subCategoryId, Integer status) {
+        return newsRepository.findAllByCategoryIdAndStatus(subCategoryId,status)
                 .stream().map(item-> converter.convertToDTO(item)).collect(Collectors.toList());
     }
-
+    @Transactional
     @Override
     public NewsDTO save(NewsDTO newsDTO) {
         if (newsDTO.getId()==null){
@@ -52,6 +54,7 @@ public class NewsService implements INewsService {
         return new NewsDTO();
     }
 
+    @Transactional
     @Override
     public NewsDTO update(NewsDTO newsDTO) {
         if (newsDTO.getId()!=null){
@@ -63,8 +66,8 @@ public class NewsService implements INewsService {
 
     @Override
     public NewsDTO findById(Long id) {
-        if(id!=null){
-            return converter.convertToDTO(newsRepository.findById(id));
+        if(exitsById(id)){
+            return converter.convertToDTO(newsRepository.findById(id).get());
         }
         return new NewsDTO();
     }
@@ -76,12 +79,36 @@ public class NewsService implements INewsService {
         }
         return new NewsDTO();
     }
-
+    @Transactional
     @Override
-    public void disable(NewsDTO newsDTO) {
+    public void enableNews(NewsDTO newsDTO) {
         if (newsDTO.getId()!=null){
             NewsEntity newsEntity = converter.convertToEntity(newsDTO);
-            newsEntity.setStatus(1);
+            newsEntity.setStatus(SystemConstant.enable);
+            newsRepository.save(newsEntity);
+        }
+    }
+
+    @Override
+    public void disableAll(Long[] ids) {
+        for(Long id : ids){
+            disableNews(findById(id));
+        }
+    }
+
+    @Override
+    public void enableAll(Long[] ids) {
+        for (Long id : ids){
+            enableNews(findById(id));
+        }
+    }
+
+    @Transactional
+    @Override
+    public void disableNews(NewsDTO newsDTO) {
+        if (newsDTO.getId()!=null){
+            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
+            newsEntity.setStatus(SystemConstant.disable);
             newsRepository.save(newsEntity);
         }
     }
@@ -94,9 +121,59 @@ public class NewsService implements INewsService {
     }
 
     @Override
+    @Transactional
     public void deleteOne(Long id) {
-        if (id!=null){
+        if (id!=null && exitsById(id)){
             newsRepository.deleteById(id);
         }
     }
+
+    @Override
+    public NewsDTO findMostViewsByCategoryId(Long id) {
+        List<NewsDTO> listNews = findAllByCategoryIdAndStatus(id, SystemConstant.enable);
+        NewsDTO maxView = listNews.get(0);
+        for (NewsDTO item : listNews)
+        {
+            if (item.getCount() >= maxView.getCount() ){
+                maxView = item;
+            }
+        }
+        return maxView;
+    }
+
+    @Override
+    public NewsDTO findMostViews() {
+        List<NewsDTO> listNews = findAllByStatus(SystemConstant.enable);
+        NewsDTO maxView = listNews.get(0);
+        for (NewsDTO item : listNews)
+        {
+            if (item.getCount() >= maxView.getCount() ){
+                maxView = item;
+            }
+        }
+        return maxView;
+    }
+
+    @Override
+    public NewsDTO countViews(Long id) {
+        NewsDTO news = findById(id);
+        if (news.getCount()==0 || news.getCount()==null){
+            news.setCount(1);
+        }else {
+            news.setCount(news.getCount()+1);
+        }
+        return update(news);
+    }
+
+    @Override
+    public Boolean exitsById(Long id) {
+        return newsRepository.existsById(id);
+    }
+
+    @Override
+    public List<NewsDTO> findLatest() {
+        return newsRepository.findLastestByStatus()
+                .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+    }
+
 }

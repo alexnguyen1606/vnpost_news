@@ -48,7 +48,7 @@
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-desktop"></i>
                 <span class="menu-text">
-								Tòa nhà
+								Bài viết
 							</span>
 
                 <b class="arrow fa fa-angle-down"></b>
@@ -58,9 +58,36 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="/admin/building" >
+                    <a href="/admin/news" >
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách tòa nhà
+                        Danh sách bài viết
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/admin/news/disable" >
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách bài viết disable
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-users"></i>
+                <span class="menu-text">
+								Chuyên mục
+							</span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="/admin/category" >
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách chuyên mục
                     </a>
                 </li>
 
@@ -68,7 +95,7 @@
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-users"></i>
+                <i class="menu-icon fa fa-user"></i>
                 <span class="menu-text">
 								Quản lý tài khoản
 							</span>
@@ -80,31 +107,9 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="#" >
+                    <a href="" >
                         <i class="menu-icon fa fa-caret-right"></i>
                         Danh sách tài khoản
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-        <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-user"></i>
-                <span class="menu-text">
-								Quản lý khách hàng
-							</span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="">
-                    <a href="/admin/customer" >
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách khách hàng
                     </a>
                 </li>
 

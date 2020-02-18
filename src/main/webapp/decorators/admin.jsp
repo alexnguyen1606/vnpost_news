@@ -15,6 +15,7 @@
 <html>
 <head>
     <title></title>
+    <link rel="shortcut icon" href="/template/images/vnpost-logo.png" />
 
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/font-awesome/4.2.0/css/font-awesome.min.css' />" />

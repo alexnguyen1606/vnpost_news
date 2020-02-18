@@ -19,5 +19,5 @@ public class BaseDTO {
     private Integer page;
     private Integer limit;
     private Long[] idDelete = new Long[]{};
-    private Long[] idDisable = new Long[]{};
+    private Long[] listId = new Long[]{};
 }

@@ -16,7 +16,6 @@ public class NewsDTO extends BaseDTO{
 
     private String title;
 
-
     private String url;
 
     private Integer count;
@@ -25,5 +24,5 @@ public class NewsDTO extends BaseDTO{
 
     private List<ParagraphDTO> listParagraph = new ArrayList<>();
 
-    private SubCategoryDTO subCategory;
+    private CategoryDTO category;
 }

@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="container">
+<div class="row main-service-wrapper">
+    <div class="container">
+
     <!-- <h1 class="form-heading">login Form</h1> -->
-    <div class="login-form">
+    <div class="col-md-6 col-xs-12 login-form">
         <div class="main-div">
             <c:if test="${param.incorrectAccount != null}">
                 <div class="alert alert-danger">
@@ -27,4 +29,5 @@
             </form>
         </div>
     </div>
+</div>
 </div>

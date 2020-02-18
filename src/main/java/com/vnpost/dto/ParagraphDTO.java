@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ParagraphDTO extends BaseDTO{
 
-    private String imgage;
+    private String image;
 
     private String titleImage;
     private NewsDTO news;

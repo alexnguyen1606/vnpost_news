@@ -21,7 +21,7 @@ public class JPAConfig {
     public DataSource dataSourceMySQL(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/vnpost");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/vnpost_news");
         dataSource.setUsername("root");
         dataSource.setPassword("1234");
         return dataSource;
@@ -48,6 +48,7 @@ public class JPAConfig {
     @Bean
     public Properties addMySQlProperties() {
         Properties properties = new Properties();
+        //properties.setProperty("hibernate.hbm2ddl.auto", "create");
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
         properties.setProperty("hibernate.show_sql","false");

@@ -24,17 +24,15 @@ public class NewsEntity extends BaseEntity{
 
     @Column(name = "url",length = 50)
     private String url;
-    @Column(name = "count")
+    @Column(name = "count",columnDefinition = "integer default 0")
     private Integer count;
     @Column(name = "author",length = 50)
     private String author;
 
     @OneToMany(mappedBy = "news",fetch = FetchType.EAGER)
     private List<ParagraphEntity> listParagraph = new ArrayList<>();
-//    @ManyToOne
-//    @JoinTable(name = "maincategoryid")
-//    private MainCategoryEntity mainCategory;
+
     @ManyToOne
-    @JoinTable(name = "subcategoryid")
-    private SubCategoryEntity subCategory;
+    @JoinColumn(name = "categoryid")
+    private CategoryEntity category;
 }

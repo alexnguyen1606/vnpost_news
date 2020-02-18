@@ -11,12 +11,12 @@ import javax.persistence.*;
 @Table(name = "paragraphs")
 public class ParagraphEntity extends BaseEntity {
     @Column(name = "image")
-    private String imgage;
+    private String image;
     @Column(name = "titleImage")
     private String titleImage;
     @Column(name = "content")
     private String content;
-    @JoinTable(name = "newsid")
+    @JoinColumn(name = "newsid")
     @ManyToOne
     private NewsEntity news;
 }

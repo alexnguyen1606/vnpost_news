@@ -9,17 +9,15 @@ import java.util.List;
 
 @Getter
 @Setter
-@Table(name = "subcategory")
+@Table(name = "category")
 @Entity
-public class SubCategoryEntity extends BaseEntity{
+public class CategoryEntity extends BaseEntity{
     @Column(name = "url",length = 50)
     private String url;
     @Column(name = "name",length = 50,nullable = false,unique = true)
     private String name;
-    @ManyToOne
-    @JoinTable(name = "maincategoryid")
-    private MainCategoryEntity mainCategory;
 
-    @OneToMany(mappedBy = "subCategory",fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
     private List<NewsEntity> listNews = new ArrayList<>();
 }

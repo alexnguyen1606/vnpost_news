@@ -1,4 +1,4 @@
-<%--<%@ page import="com.laptrinhjavaweb.util.SecurityUtils" %>--%>
+<%@ page import="com.vnpost.utils.SecurityUtils" %><%--<%@ page import="com.laptrinhjavaweb.util.SecurityUtils" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="/common/taglib.jsp"></jsp:include>
 
@@ -112,7 +112,7 @@
                         <img class="nav-user-photo" src="/template/admin/assets/avatars/user.jpg" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>Welcome,</small>
-									<%--<%=SecurityUtils.getPrincipal().getFullName()%>--%>
+									<%=SecurityUtils.getPrincipal().getFullName()%>
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -136,7 +136,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="#">
+                            <a href="/logout">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>

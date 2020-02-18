@@ -8,14 +8,14 @@ import java.util.List;
 
 @Getter
 @Setter
-public class SubCategoryDTO extends BaseDTO {
+public class CategoryDTO extends BaseDTO {
 
     private String url;
 
     private String name;
 
-    private MainCategoryDTO mainCategory;
-
-
     private List<NewsDTO> listNews = new ArrayList<>();
+
+    private NewsDTO newsLatest;
+    private NewsDTO newsMostViews;
 }

@@ -5,8 +5,7 @@
        <class>com.vnpost.entity.UserEntity</class>
         <class>com.vnpost.entity.NewsEntity</class>
         <class>com.vnpost.entity.RoleEntity</class>
-        <class>com.vnpost.entity.MainCategoryEntity</class>
-        <class>com.vnpost.entity.SubCategoryEntity</class>
+        <class>com.vnpost.entity.CategoryEntity</class>
         <class>com.vnpost.entity.ParagraphEntity</class>
         <class>com.vnpost.entity.SubcribEntity</class>
     </persistence-unit>

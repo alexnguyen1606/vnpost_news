@@ -3,7 +3,7 @@
 <div class="row header">
     <div class="container">
         <div class="logo-wrapper col-sm-6 col-xs-12" >
-            <a href="" class="site-logo">
+            <a href="/" class="site-logo">
                 <img src="/template/images/vnpost-logo1.png" alt="vnpost">
             </a>
         </div>

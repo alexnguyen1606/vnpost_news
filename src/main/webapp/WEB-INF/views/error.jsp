@@ -13,7 +13,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title><sitemesh:write property='title'  >Trang chủ</sitemesh:write></title>
+    <title></title>
+    <link rel="shortcut icon" href="/template/images/vnpost-logo.png" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/custom.css' />">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
