@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
@@ -12,11 +13,13 @@ import java.util.List;
 @Table(name ="users" )
 @Entity
 public class UserEntity extends BaseEntity {
+    @NotNull
     @NotBlank
-    @Column(name = "username",length = 50,nullable = false,unique = true)
+    @Column(name = "username",length = 255,nullable = false,unique = true)
     private String userName;
+    @NotNull
     @NotBlank
-    @Column(name = "password",length = 50,nullable = false)
+    @Column(name = "password",length = 255,nullable = false)
     private String password;
 
     @Column(name = "fullname")

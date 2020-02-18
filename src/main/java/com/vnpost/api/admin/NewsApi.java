@@ -3,13 +3,10 @@ package com.vnpost.api.admin;
 import com.vnpost.dto.NewsDTO;
 import com.vnpost.service.INewsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController(value = "apiNews")
-@RequestMapping("/admin/news")
+@RequestMapping("/api/news")
 public class NewsApi {
     @Autowired
     private INewsService newsService;
@@ -23,5 +20,8 @@ public class NewsApi {
         newsService.enableAll(newsDTO.getListId());
         return newsDTO;
     }
-
+    @DeleteMapping
+    public void deleteNews(@RequestBody NewsDTO newsDTO){
+        newsService.deleteAll(newsDTO.getListId());
+    }
 }

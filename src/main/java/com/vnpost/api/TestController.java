@@ -13,7 +13,6 @@ public class TestController {
     @GetMapping("/api/test")
     public UserEntity findOne(){
         UserEntity userEntity = new UserEntity();
-        userEntity.setCreatedBy("Abc");
         return userEntity;
     }
     @PostMapping("/api/test")

@@ -1,5 +1,6 @@
 package com.vnpost.service.impl;
 
+import com.vnpost.constant.SystemConstant;
 import com.vnpost.converter.UserConverter;
 import com.vnpost.dto.UserDTO;
 import com.vnpost.entity.UserEntity;
@@ -32,6 +33,7 @@ public class UserService implements IUserService {
     public UserDTO save(UserDTO userDTO) {
         if (userDTO.getId()==null){
             UserEntity entity = converter.convertToEntity(userDTO);
+
             return converter.convertToDTO(userRepository.save(entity));
         }
         return new UserDTO();
@@ -41,6 +43,9 @@ public class UserService implements IUserService {
     public UserDTO update(UserDTO userDTO) {
         if (userDTO.getId()!=null){
             UserEntity entity = converter.convertToEntity(userDTO);
+            UserEntity userEntityIndB = userRepository.findById(entity.getId()).get();
+            entity.setCreatedBy(userEntityIndB.getCreatedBy());
+            entity.setCreatedDate(userEntityIndB.getCreatedDate());
             return converter.convertToDTO(userRepository.save(entity));
         }
         return new UserDTO();
@@ -62,5 +67,35 @@ public class UserService implements IUserService {
     public List<UserDTO> findByStatusAndRole(int status, long roleId) {
         return userRepository.findAllByStatusAndRoles(status,roleRepository.findById(roleId).get()).stream()
                 .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void delete(Long[] ids) {
+        for (Long id : ids){
+            roleRepository.deleteById(id);
+        }
+    }
+
+    @Override
+    public void enable(Long[] ids) {
+        for (Long id : ids){
+            UserDTO userDTO = findById(id);
+            userDTO.setStatus(SystemConstant.enable);
+            update(userDTO);
+        }
+    }
+
+    @Override
+    public void disable(Long[] ids) {
+        for (Long id : ids){
+            UserDTO userDTO = findById(id);
+            userDTO.setStatus(SystemConstant.disable);
+            update(userDTO);
+        }
+    }
+
+    @Override
+    public UserDTO findById(Long id) {
+        return converter.convertToDTO(roleRepository.findById(id).get());
     }
 }

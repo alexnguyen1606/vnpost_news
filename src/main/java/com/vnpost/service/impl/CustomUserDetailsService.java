@@ -1,5 +1,6 @@
 package com.vnpost.service.impl;
 
+import com.vnpost.constant.SystemConstant;
 import com.vnpost.dto.CustomUserDetails;
 import com.vnpost.dto.MyUser;
 import com.vnpost.dto.UserDTO;
@@ -35,6 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         MyUser myUser = new MyUser
                 (user.getUserName(),user.getPassword(),true,true,true,true,authorities);
         myUser.setFullName(user.getFullName());
+        myUser.setUsername(user.getUserName());
         return myUser;
     }
 }

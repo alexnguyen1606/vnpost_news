@@ -212,6 +212,9 @@ input.search-form-index{
     background-color: white;
     color: black;
 }
+.col-md-6.lastest-news {
+    margin-top: -20px;
+}
 .news-index-col a{
     color: black;
 }

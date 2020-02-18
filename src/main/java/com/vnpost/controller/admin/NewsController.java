@@ -32,18 +32,30 @@ public class NewsController {
     @GetMapping("/edit/{id}")
     public ModelAndView editNews(@PathVariable(value = "id",required = false) Long idNews){
         ModelAndView mav = new ModelAndView("admin/news/edit");
-        mav.addObject("newsItem",newsService.findById(idNews));
+
+            mav.addObject("newsItem",newsService.findById(idNews));
+
         mav.addObject("category",categoryService.findAll());
         return mav;
     }
-    @PostMapping("/edit")
-    public RedirectView save(@ModelAttribute("modelInView") NewsDTO newsItem){
-        RedirectView rv = new RedirectView("/admin/news");
+    @GetMapping("/create")
+    public ModelAndView createNews(){
+        ModelAndView mav = new ModelAndView("admin/news/edit");
+
+        mav.addObject("newsItem",new NewsDTO());
+
+        mav.addObject("category",categoryService.findAll());
+        return mav;
+    }
+    @PostMapping("/post")
+    public ModelAndView save(@ModelAttribute("newsItem") NewsDTO newsItem){
+        System.out.println("Check point");
+        ModelAndView mav = new ModelAndView("admin/news/list");
         if (newsItem.getId()==null){
             newsService.save(newsItem);
         }else {
             newsService.update(newsItem);
         }
-        return rv;
+        return mav;
     }
 }

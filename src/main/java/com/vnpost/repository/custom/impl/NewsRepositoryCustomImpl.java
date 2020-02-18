@@ -22,10 +22,6 @@ public class NewsRepositoryCustomImpl implements NewsRepositoryCustom {
         return query.setMaxResults(5).getResultList();
     }
 
-    @Override
-    public List<NewsEntity> findLastestByStatus() {
-        String sql = "select n from NewsEntity n where n.status=1 order by n.createdDate desc ";
-        Query query = entityManager.createQuery(sql);
-        return query.setMaxResults(5).getResultList();
-    }
+
+
 }

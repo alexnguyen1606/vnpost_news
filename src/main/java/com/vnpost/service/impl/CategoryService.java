@@ -47,6 +47,9 @@ public class CategoryService implements ICategoryService {
     public CategoryDTO update(CategoryDTO categoryDTO) {
         if(categoryDTO.getId()!=null){
             CategoryEntity categoryEntity = categoryConverter.convertToEntity(categoryDTO);
+            CategoryEntity categoryEntityInDb = categoryRepository.findById(categoryEntity.getId()).get();
+            categoryEntity.setCreatedBy(categoryEntityInDb.getCreatedBy());
+            categoryEntity.setCreatedDate(categoryEntityInDb.getCreatedDate());
             return categoryConverter.convertToDTO(categoryRepository.save(categoryEntity));
         }
         return new CategoryDTO();
@@ -67,5 +70,14 @@ public class CategoryService implements ICategoryService {
                 result.getListOlder().add(listNews.get(i));
             }
         return result;
+    }
+
+    @Override
+    public void delete(Long[] ids) {
+        for (Long id : ids){
+            if (id!=null){
+                categoryRepository.deleteById(id);
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.vnpost.converter;
 
 import com.vnpost.dto.UserDTO;
 import com.vnpost.entity.UserEntity;
+import com.vnpost.utils.EncrytedPasswordUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ public class UserConverter implements IDTO<UserDTO>,IEntity<UserEntity>{
     public UserEntity convertToEntity(Object object) {
         UserDTO dto = (UserDTO) object;
         UserEntity entity = modelMapper.map(dto, UserEntity.class);
+        entity.setPassword(EncrytedPasswordUtils.encrytePassword(dto.getPassword()));
         return entity;
     }
 }

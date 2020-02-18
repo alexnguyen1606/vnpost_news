@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Danh sách tòa nhà</title>
+    <title>Bài viết</title>
 </head>
 <body>
 <div class="breadcrumbs" id="breadcrumbs">
@@ -21,7 +21,7 @@
     <ul class="breadcrumb">
         <li>
             <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="/">Home</a>
+            <a href="/admin">Home</a>
         </li>
         <li class="active">Dashboard</li>
     </ul><!-- /.breadcrumb -->
@@ -36,7 +36,7 @@
                     Tòa nhà</a>
             </small>
             <small>
-                <a href="/admin/news/edit"><i class="ace-icon fa fa-angle-double-right"></i>
+                <a href="/admin/news"><i class="ace-icon fa fa-angle-double-right"></i>
                     EDIT</a>
             </small>
         </h1>
@@ -44,7 +44,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <form:form action="/admin/news/edit"  modelAttribute="newsItem" method="post" cssClass="form-horizontal"  enctype="multipart/form-data" >
+        <form:form action="/admin/news/post"  modelAttribute="newsItem" method="post" cssClass="form-horizontal"  enctype="multipart/form-data" >
         <form:input path="id" type="hidden" ></form:input>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="name">Tên bài viết </label>
@@ -79,10 +79,8 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-5">
-                    <button type="submit" class="btn btn-sm btn-success "  style="left:450px;">
-                        Submit
-                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-                    </button>
+                    <form:button type="submit" class="btn btn-sm btn-sucess" style="left:450px;">Submit
+                        <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i></form:button>
                 </div>
             </div>
         </form:form>

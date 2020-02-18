@@ -43,14 +43,14 @@
 
         <div class="col-sm-12">
             <div class="pull-right">
-                <a href="/admin/category/edit" class="btn btn-primary " data-toggle="tooltip" title="Thêm chuyện mục"><i class="fa fa-plus"></i></a>
-                <button class="btn btn-danger "  id="btnDeleteBuilding" data-toggle="tooltip" title="Xóa chuyên mục"><i class="fa fa-trash" ></i></button>
+                <a href="/admin/category/create" class="btn btn-primary " data-toggle="tooltip" title="Thêm chuyện mục"><i class="fa fa-plus"></i></a>
+                <button class="btn btn-danger "  id="btnDeleteCategory" data-toggle="tooltip" title="Xóa chuyên mục"><i class="fa fa-trash" ></i></button>
                 <%--<button class="btn btn-danger "  id="btnDisableNews" data-toggle="tooltip" title="Ẩn bài viết"><i class="fa fa-lock-alt" ></i></button>--%>
                 <%--<button class="btn btn-danger "  id="btnEnableNews" data-toggle="t ooltip" title="Hiển thị bài viết"><i class="fa fa-unlock-alt" ></i></button>--%>
             </div>
         </div>
         <div class="col-sm-12">
-            <table class="table table-striped table-hover" id="buildingList">
+            <table class="table table-striped table-hover" id="categoryId">
                 <thead>
                 <th></th>
                 <th>Tên chuyên mục</th>
@@ -81,32 +81,5 @@
         </div>
     </div><!-- /.row -->
 </div><!-- /.page-content -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Danh sách nhân viên</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-hover" id="staffList">
-                    <thead>
-                    <tr>
-                        <th>Check</th>
-                        <th>Tên nhân viên</th>
-                    </tr>
-                    </thead>
-                </table>
-                <input type="hidden" id="buildingId" name="buildingId" value="">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnAssignBuilding">Giao tòa nhà</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
 </body>
 </html>

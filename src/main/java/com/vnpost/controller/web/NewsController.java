@@ -20,7 +20,9 @@ public class NewsController {
     @GetMapping("/tin-tuc")
     public ModelAndView index(){
         ModelAndView mav = new ModelAndView("web/news/index");
-        mav.addObject("indexCategory",new IndexDTO());
+        mav.addObject("lastedNews",newsService.findLatest());
+        mav.addObject("mostViews",newsService.findMostViews());
+        mav.addObject("newest",newsService.findLatest().get(0));
         mav.addObject("category",categoryService.findAll());
         return mav;
     }
@@ -29,6 +31,7 @@ public class NewsController {
         ModelAndView mav = new ModelAndView("web/news/detail");
         NewsDTO news = newsService.findById(idNews);
       //  newsService.countViews(news.getId());
+        newsService.countViews(news.getId());
         mav.addObject("category",categoryService.findAll());
         mav.addObject("newsItem",news);
         return mav;

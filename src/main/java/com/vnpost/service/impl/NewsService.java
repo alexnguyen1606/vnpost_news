@@ -6,11 +6,15 @@ import com.vnpost.dto.NewsDTO;
 import com.vnpost.entity.NewsEntity;
 import com.vnpost.repository.NewsRepository;
 import com.vnpost.service.INewsService;
+import com.vnpost.sort.NewsSort;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,11 +30,11 @@ public class NewsService implements INewsService {
                 .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
     }
 
-    @Override
-    public List<NewsDTO> findAllByCategoryId(Long categoryId) {
-        return newsRepository.findAllByCategoryId(categoryId).stream()
-                .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
-    }
+//    @Override
+//    public List<NewsDTO> findAllByCategoryId(Long categoryId) {
+//        return newsRepository.findAllByCategoryId(categoryId).stream()
+//                .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+//    }
 
 
     @Override
@@ -59,6 +63,9 @@ public class NewsService implements INewsService {
     public NewsDTO update(NewsDTO newsDTO) {
         if (newsDTO.getId()!=null){
             NewsEntity newsEntity = converter.convertToEntity(newsDTO);
+            NewsEntity newsEntityInDb = newsRepository.findById(newsEntity.getId()).get();
+            newsEntity.setCreatedBy(newsEntityInDb.getCreatedBy());
+            newsEntity.setCreatedDate(newsEntityInDb.getCreatedDate());
             return converter.convertToDTO(newsRepository.save(newsEntity));
         }
         return new NewsDTO();
@@ -72,21 +79,21 @@ public class NewsService implements INewsService {
         return new NewsDTO();
     }
 
-    @Override
-    public NewsDTO findByUrl(String url) {
-        if ((Boolean) StringUtils.isNotEmpty(url)){
-            return converter.convertToDTO(newsRepository.findByUrl(url));
-        }
-        return new NewsDTO();
-    }
+//    @Override
+//    public NewsDTO findByUrl(String url) {
+//        if ((Boolean) StringUtils.isNotEmpty(url)){
+//            return converter.convertToDTO(newsRepository.findByUrl(url));
+//        }
+//        return new NewsDTO();
+//    }
     @Transactional
     @Override
     public void enableNews(NewsDTO newsDTO) {
-        if (newsDTO.getId()!=null){
-            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
-            newsEntity.setStatus(SystemConstant.enable);
-            newsRepository.save(newsEntity);
-        }
+//            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
+//            newsEntity.setStatus(SystemConstant.enable);
+//            newsRepository.save(newsEntity);
+        newsDTO.setStatus(SystemConstant.enable);
+        update(newsDTO);
     }
 
     @Override
@@ -106,11 +113,11 @@ public class NewsService implements INewsService {
     @Transactional
     @Override
     public void disableNews(NewsDTO newsDTO) {
-        if (newsDTO.getId()!=null){
-            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
-            newsEntity.setStatus(SystemConstant.disable);
-            newsRepository.save(newsEntity);
-        }
+//            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
+//            newsEntity.setStatus(SystemConstant.disable);
+//            newsRepository.save(newsEntity);
+            newsDTO.setStatus(SystemConstant.disable);
+            update(newsDTO);
     }
 
     @Override
@@ -155,14 +162,14 @@ public class NewsService implements INewsService {
     }
 
     @Override
-    public NewsDTO countViews(Long id) {
+    public void countViews(Long id) {
         NewsDTO news = findById(id);
         if (news.getCount()==0 || news.getCount()==null){
             news.setCount(1);
         }else {
             news.setCount(news.getCount()+1);
         }
-        return update(news);
+        update(news);
     }
 
     @Override
@@ -172,8 +179,15 @@ public class NewsService implements INewsService {
 
     @Override
     public List<NewsDTO> findLatest() {
-        return newsRepository.findLastestByStatus()
-                .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+        List<NewsDTO> result = findAllByStatus(SystemConstant.enable);
+        Collections.sort(result, new Comparator<NewsDTO>() {
+            @Override
+            public int compare(NewsDTO o1, NewsDTO o2) {
+                return o1.getCreatedDate().compareTo(o2.getCreatedDate());
+            }
+        });
+        Collections.reverse(result);
+        return result;
     }
 
 }

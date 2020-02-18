@@ -16,6 +16,8 @@ public class NewsDTO extends BaseDTO{
 
     private String title;
 
+    private String thumbnail;
+
     private String url;
 
     private Integer count;

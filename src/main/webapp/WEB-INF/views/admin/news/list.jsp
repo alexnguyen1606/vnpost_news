@@ -43,14 +43,14 @@
 
         <div class="col-sm-12">
             <div class="pull-right">
-                <a href="/admin/news/edit/" class="btn btn-primary " data-toggle="tooltip" title="Thêm bài viết"><i class="fa fa-plus"></i></a>
-                <button class="btn btn-danger "  id="btnDeleteBuilding" data-toggle="tooltip" title="Xóa bài viết"><i class="fa fa-trash" ></i></button>
-                <button class="btn btn-danger "  id="btnDisableNews" data-toggle="tooltip" title="Ẩn bài viết"><i class="fa fa-lock" ></i></button>
-                <button class="btn btn-danger "  id="btnEnableNews" data-toggle="t ooltip" title="Hiển thị bài viết"><i class="fa fa-unlock-alt" ></i></button>
+                <a href="/admin/news/create" class="btn btn-primary " data-toggle="tooltip" title="Thêm bài viết"><i class="fa fa-plus"></i></a>
+                <button class="btn btn-danger "  id="btnDeleteNews" data-toggle="tooltip" title="Xóa bài viết"><i class="fa fa-trash" ></i></button>
+                <button class="btn btn-warning "  id="btnDisableNews" data-toggle="tooltip" title="Ẩn bài viết"><i class="fa fa-lock" ></i></button>
+                <button class="btn btn-success "  id="btnEnableNews" data-toggle="t ooltip" title="Hiển thị bài viết"><i class="fa fa-unlock-alt" ></i></button>
             </div>
         </div>
         <div class="col-sm-12">
-            <table class="table table-striped table-hover" id="buildingList">
+            <table class="table table-striped table-hover" id="newsList">
                 <thead>
                 <th></th>
                 <th>Tên bài viết</th>

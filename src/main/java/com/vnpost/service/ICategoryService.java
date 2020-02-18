@@ -13,4 +13,5 @@ public interface ICategoryService {
     CategoryDTO update(CategoryDTO categoryDTO);
     List<CategoryDTO> findByIdAndStatus(Long id ,Integer status);
     IndexDTO findIndexCategory();
+    void delete(Long[] ids);
 }

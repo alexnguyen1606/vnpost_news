@@ -107,7 +107,7 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="" >
+                    <a href="/admin/user" >
                         <i class="menu-icon fa fa-caret-right"></i>
                         Danh sách tài khoản
                     </a>

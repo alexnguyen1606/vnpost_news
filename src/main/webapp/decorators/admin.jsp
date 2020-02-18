@@ -61,11 +61,14 @@
 <script src="<c:url value='/template/admin/assets/js/bootstrap.min.js' />"></script>
 <script src="<c:url value='/template/admin/assets/js/ace-elements.min.js' />"></script>
 <script src="<c:url value='/template/admin/assets/js/ace.min.js' />"></script>
-<script src="<c:url value='/template/admin/js/building-list.js'/>"></script>
-<script src="<c:url value='/template/admin/js/building-edit.js'/> "></script>
-<script src="<c:url value='/template/admin/js/customer-list.js'/>"></script>
-<script src="<c:url value='/template/admin/js/customer-edit.js'/> "></script>
+
+<script src="<c:url value='/template/admin/js/category-edit.js'/> "></script>
+<script src="<c:url value='/template/admin/js/category-list.js'/> "></script>
+<script src="<c:url value='/template/admin/js/news-list.js'/> "></script>
+<script src="<c:url value='/template/admin/js/user-edit.js'/> "></script>
+<script src="<c:url value='/template/admin/js/user-list.js'/> "></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <%--<script src="<c:url value='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'/> "></script>--%>
 
 </body>

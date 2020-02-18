@@ -30,28 +30,28 @@
             <div class="container-fluid content-news-group">
                 <div class="col-md-6 lastest-news">
                     <div class="container-fulid">
-                        <h2><a href="/bai-viet/chi-tiet/id/${indexCategory.newsLastest.id}/key/${indexCategory.newsLastest.url}">
-                            ${indexCategory.newsLastest.name}</a></h2>
+                        <h2><a href="/bai-viet/chi-tiet/id/${newest.id}/key/${newest.url}">
+                            ${newest.name}</a></h2>
                         <div class="  col-img">
                             <img src="/template/images/188241_di-tung-ngo.jpg" alt="">
                         </div>
                         <div class=" short-content">
-                            <p>${indexCategory.newsLastest.title}</p>
+                            <p>${newest.title}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 older-news ">
                     <ul>
-                        <c:forEach items="${indexCategory.listOlder}" var="item">
-                            <li><a href="/bai-viet/nhom/id/${item.id}/key/${item.url}">${item.name}</a></li>
+                        <c:forEach items="${lastedNews}" var="item">
+                            <li><a href="/bai-viet/chi-tiet/id/${item.id}/key/${item.url}">${item.name}</a></li>
                         </c:forEach>
                     </ul>
                 </div>
                 <div class="col-md-3 most-view-news">
                     <img src="/template/images/Văn-hóa-doanh-nghiệp.jpg" alt="">
                     <h2>
-                        <a href="/bai-viet/chi-tiet/id/${indexCategory.mostViews.id}/key/${indexCategory.mostViews.url}">
-                            ${indexCategory.mostViews.name}</a>
+                        <a href="/bai-viet/chi-tiet/id/${mostViews.id}/key/${mostViews.url}">
+                            ${mostViews.name}</a>
                     </h2>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 package com.vnpost.entity;
 
+import ch.qos.logback.classic.joran.action.LevelAction;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -19,7 +21,7 @@ public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    //@Setter(AccessLevel.PRIVATE)
     @Column(name = "createddate")
     @CreatedDate
     private Date createdDate;
@@ -27,7 +29,7 @@ public class BaseEntity {
     @Column(name = "modifieddate")
     @LastModifiedDate
     private Date modifiedDate;
-
+    //@Setter(AccessLevel.PRIVATE)
     @Column(name = "createdby")
     @CreatedBy
     private String createdBy;

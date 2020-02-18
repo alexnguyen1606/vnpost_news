@@ -9,8 +9,8 @@ public class CustomSiteMeshFilter extends ConfigurableSiteMeshFilter {
         builder.addDecoratorPath("/*","/decorators/web.jsp")
                 //.addDecoratorPath("/error","/decorators/web.jsp")
                // .addDecoratorPath("/login","/decorators/login.jsp")
-                .addDecoratorPath("/admin*","/decorators/admin.jsp")
-                .addExcludedPath("/api*");
+                .addDecoratorPath("/admin**","/decorators/admin.jsp")
+                .addExcludedPath("/api**");
     }
 
 }

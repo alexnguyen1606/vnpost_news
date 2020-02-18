@@ -21,7 +21,8 @@ public class NewsEntity extends BaseEntity{
     private String name;
     @Column(name = "title")
     private String title;
-
+    @Column(name = "thumbnail")
+    private String thumbnail;
     @Column(name = "url",length = 50)
     private String url;
     @Column(name = "count",columnDefinition = "integer default 0")

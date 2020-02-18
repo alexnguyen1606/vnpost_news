@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface INewsService {
     List<NewsDTO> findAll();
-    List<NewsDTO> findAllByCategoryId(Long subCategoryId);
+    //List<NewsDTO> findAllByCategoryId(Long subCategoryId);
     List<NewsDTO> findAllByStatus(Integer status);
     List<NewsDTO> findAllByCategoryIdAndStatus(Long subCategoryId,Integer status);
     NewsDTO save(NewsDTO newsDTO);
     NewsDTO update(NewsDTO newsDTO);
     NewsDTO findById(Long id);
-    NewsDTO findByUrl(String url);
+    //NewsDTO findByUrl(String url);
     void disableNews(NewsDTO newsDTO);
     void enableNews(NewsDTO newsDTO);
     void disableAll(Long[] ids);
@@ -21,7 +21,7 @@ public interface INewsService {
     void deleteOne(Long id);
     NewsDTO findMostViewsByCategoryId(Long id);
     NewsDTO findMostViews();
-    NewsDTO countViews(Long id);
+    void countViews(Long id);
     Boolean exitsById(Long id);
     List<NewsDTO> findLatest();
 }

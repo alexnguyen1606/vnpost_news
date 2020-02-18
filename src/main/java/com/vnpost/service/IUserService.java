@@ -10,8 +10,10 @@ public interface IUserService {
     UserDTO save(UserDTO userDTO);
     UserDTO update(UserDTO userDTO);
     UserDTO findByUsername(String username);
-   // UserDTO findOne(Long id);
-    //List<UserDTO> findAllByStatusAndRoleIdAndBuildingId(int status, long roleId, Long buildingId);
     List<UserDTO> findAllByStatus(int status);
     List<UserDTO> findByStatusAndRole(int status, long roleId);
+    void delete(Long[] ids);
+    void enable(Long[] ids);
+    void disable(Long[] ids);
+    UserDTO findById(Long id);
 }
