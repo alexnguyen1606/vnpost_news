@@ -1,5 +1,6 @@
 package com.vnpost.controller.web;
 
+import com.vnpost.constant.SystemConstant;
 import com.vnpost.service.ICategoryService;
 import com.vnpost.service.INewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class CategoryController {
     private ModelAndView category(@PathVariable("id") Long id,@PathVariable("key") String key ){
         ModelAndView mav = new ModelAndView("web/news/category");
         mav.addObject("category",categoryService.findAll());
-        mav.addObject("news",newsService.findAllByCategoryIdAndStatus(id,1));
+        mav.addObject("news",newsService.findAllByCategoryIdAndStatus(id, SystemConstant.enable));
         return mav;
     }
 }

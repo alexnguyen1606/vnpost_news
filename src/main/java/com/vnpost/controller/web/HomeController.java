@@ -17,14 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 @Controller(value = "webHomeController")
 public class HomeController {
     @GetMapping("/")
-    public String index(){
-        return "web/home";
+    public ModelAndView index(){
+        ModelAndView mav = new ModelAndView("web/home");
+        return mav;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView loginPage() {
-        ModelAndView mav = new ModelAndView("login");
-        return mav;
+    public ModelAndView loginPage(HttpServletRequest request,HttpServletResponse response) {
+        //ModelAndView mav = new ModelAndView("login");
+
+        return new ModelAndView("login");
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -32,8 +34,9 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
+            return new ModelAndView("web/home");
         }
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("login");
     }
 
     @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)

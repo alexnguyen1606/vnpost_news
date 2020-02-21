@@ -47,41 +47,22 @@
         <form class="form-horizontal" role="form" id="formEdit">
             <input type="hidden" id="id" name="id" value="${user.id}">
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="fullName">Họ tên </label>
+                <label class="col-sm-3 control-label no-padding-right" for="repeatPassword">Nhập lại mật khẩu</label>
 
                 <div class="col-sm-9">
-                    <input type="text" id="fullName" name="fullName" value="${user.fullName}" placeholder="" class="col-xs-10 col-sm-5" />
+                    <input type="text" id="repeatPassword" name="repeatPassword" required="required"  placeholder="" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="userName">Username </label>
+                <label class="col-sm-3 control-label no-padding-right" for="password">Nhập mật khẩu mới</label>
 
                 <div class="col-sm-9">
-                    <input type="text" id="userName" name="userName" value="${user.userName}" required="required"  placeholder="" class="col-xs-10 col-sm-5" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="status">Status</label>
-
-                <div class="col-sm-9">
-                    <select class="col-sm-4" name="status" id="status">
-                        <option value="1" ${user.status==1 ? "selected":""} class="col-xs-10 col-sm-5">Enable</option>
-                        <option value="0" ${user.status == 0 ? "selected":""} class="col-xs-10 col-sm-5">disable</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" >Quyền tài khoản</label>
-                <div class="col-sm-9">
-                   <c:forEach items="${listRole}" var="item">
-                       <label class="checkbox-inline"><input type="checkbox"
-                          ${fn:contains(user.roles,item )? "checked":""}     name="code"  value="${item.code}">${item.name}</label>
-                   </c:forEach>
+                    <input type="text" id="password" name="password" value="" required="required"  placeholder="" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-5">
-                    <button type="button" class="btn btn-sm btn-success " id="btnAddUser" style="left:450px;">
+                    <button type="button" class="btn btn-sm btn-success " id="btnChangeInfo" style="left:450px;">
                         Submit
                         <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
                     </button>

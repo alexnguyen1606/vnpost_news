@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>VN Post| ${newsItem.name}</title>
+
 </head>
 <body>
 <div class="row main-service-wrapper">
@@ -22,7 +23,7 @@
                 <%--<c:forEach items="${newsItem}" var="item">--%>
                     <h1>${newsItem.name}</h1>
                     <label class="news-date"><fmt:formatDate type = "both"
-                                                             dateStyle = "short" timeStyle = "short" pattern="dd-M-yyyy hh:mm" value = "${item.createdDate}" />
+                                                             dateStyle = "short" timeStyle = "short" pattern="dd-M-yyyy hh:mm" value = "${newsItem.createdDate}" />
                     </label>
                     <p>
                        ${newsItem.title}

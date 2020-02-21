@@ -28,7 +28,10 @@
                     <li>
                             <span class="search-icon">
                                 <i class="fa fa-search" ></i>
-                                <input placeholder="Tìm kiếm" type="text" class="search-form-index">
+                                <%--<form method="get" action="/tin-tuc/tim-kiem">--%>
+                                    <input placeholder="Tìm kiếm" name="search" id="search" type="text" class="search-form-index">
+                                <%--</form>--%>
+
                             </span>
                     </li>
                 </ul>

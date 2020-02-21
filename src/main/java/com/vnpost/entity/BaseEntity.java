@@ -1,7 +1,5 @@
 package com.vnpost.entity;
 
-import ch.qos.logback.classic.joran.action.LevelAction;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;

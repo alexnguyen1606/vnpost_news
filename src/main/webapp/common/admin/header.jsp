@@ -22,7 +22,7 @@
             <a href="/admin" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    Ace Admin
+                    VietNam POST
                 </small>
             </a>
         </div>
@@ -112,7 +112,7 @@
                         <img class="nav-user-photo" src="/template/admin/assets/avatars/user.jpg" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>Welcome,</small>
-									<%=SecurityUtils.getPrincipal().getFullName()%>
+									<%--<%=SecurityUtils.getPrincipal().getFullName()%>--%>
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -134,7 +134,12 @@
                         </li>
 
                         <li class="divider"></li>
-
+                        <li>
+                            <a href="/changeinfo">
+                                <i class="ace-icon fa fa-key"></i>
+                                Change PassWord
+                            </a>
+                        </li>
                         <li>
                             <a href="/logout">
                                 <i class="ace-icon fa fa-power-off"></i>

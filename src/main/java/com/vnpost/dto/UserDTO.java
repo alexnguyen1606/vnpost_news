@@ -15,12 +15,14 @@ public class UserDTO extends BaseDTO {
 
     private String password;
 
+    private String repeatPassword;
+
 
     private String fullName;
 
 
     private Integer status;
-
+    private List<String> listRole = new ArrayList<>();
 
     private List<RoleDTO> roles = new ArrayList<>();
 }

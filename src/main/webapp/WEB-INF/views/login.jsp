@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+    .col-sm-6.col-xs-12.col-right{
+        margin-top: -20px;
+    }
+</style>
 <div class="row main-service-wrapper">
     <div class="container">
 

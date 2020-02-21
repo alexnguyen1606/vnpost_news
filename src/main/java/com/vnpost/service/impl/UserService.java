@@ -2,15 +2,21 @@ package com.vnpost.service.impl;
 
 import com.vnpost.constant.SystemConstant;
 import com.vnpost.converter.UserConverter;
+import com.vnpost.dto.RoleDTO;
 import com.vnpost.dto.UserDTO;
+import com.vnpost.entity.RoleEntity;
 import com.vnpost.entity.UserEntity;
 import com.vnpost.repository.RoleRepository;
 import com.vnpost.repository.UserRepository;
+import com.vnpost.service.IRoleService;
 import com.vnpost.service.IUserService;
+import com.vnpost.utils.EncrytedPasswordUtils;
+import com.vnpost.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,6 +29,8 @@ public class UserService implements IUserService {
     private RoleRepository roleRepository;
     @Autowired
     private UserConverter converter;
+    @Autowired
+    private IRoleService roleService;
     @Override
     public ArrayList<UserDTO> findAll() {
         return (ArrayList<UserDTO>) userRepository.findAll().stream()
@@ -32,8 +40,12 @@ public class UserService implements IUserService {
     @Override
     public UserDTO save(UserDTO userDTO) {
         if (userDTO.getId()==null){
+            for (RoleDTO roleDTO : userDTO.getRoles()){
+                RoleDTO role = roleService.findByCode(roleDTO.getCode());
+                userDTO.getRoles().add(role);
+            }
+            userDTO.setPassword(SystemConstant.defaultPassword);
             UserEntity entity = converter.convertToEntity(userDTO);
-
             return converter.convertToDTO(userRepository.save(entity));
         }
         return new UserDTO();
@@ -42,8 +54,13 @@ public class UserService implements IUserService {
     @Override
     public UserDTO update(UserDTO userDTO) {
         if (userDTO.getId()!=null){
+            for (String code : userDTO.getListRole()){
+                RoleDTO role = roleService.findByCode(code);
+                userDTO.getRoles().add(role);
+            }
             UserEntity entity = converter.convertToEntity(userDTO);
             UserEntity userEntityIndB = userRepository.findById(entity.getId()).get();
+            entity.setPassword(userEntityIndB.getPassword());
             entity.setCreatedBy(userEntityIndB.getCreatedBy());
             entity.setCreatedDate(userEntityIndB.getCreatedDate());
             return converter.convertToDTO(userRepository.save(entity));
@@ -59,13 +76,13 @@ public class UserService implements IUserService {
 
     @Override
     public List<UserDTO> findAllByStatus(int status) {
-        return userRepository.findAllByStatus(status).stream()
+        return userRepository.findByStatus(status).stream()
                 .map(item-> converter.convertToDTO(item)).collect(Collectors.toList());
     }
 
     @Override
     public List<UserDTO> findByStatusAndRole(int status, long roleId) {
-        return userRepository.findAllByStatusAndRoles(status,roleRepository.findById(roleId).get()).stream()
+        return userRepository.findByStatusAndRoles(status,roleRepository.findById(roleId).get()).stream()
                 .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
     }
 
@@ -96,6 +113,47 @@ public class UserService implements IUserService {
 
     @Override
     public UserDTO findById(Long id) {
-        return converter.convertToDTO(roleRepository.findById(id).get());
+        if (existById(id)){
+            return converter.convertToDTO(userRepository.findById(id).get());
+        }
+        return new UserDTO();
+    }
+
+    @Override
+    public boolean existById(Long id) {
+        if (userRepository.existsById(id)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void resetPassword(Long id) {
+        UserDTO userDTO = findById(id);
+        userDTO.setPassword(SystemConstant.defaultPassword);
+        UserEntity entity = converter.convertToEntity(userDTO);
+        userRepository.save(entity);
+
+    }
+
+    @Override
+    public void resetAll(Long[] ids) {
+        for (Long id: ids) {
+            resetPassword(id);
+        }
+    }
+
+    @Override
+    public void changePassWord(UserDTO userDTO) {
+        String passwordEncoder = EncrytedPasswordUtils.encrytePassword(userDTO.getRepeatPassword());
+        UserDTO userInDb = findByUsername(SecurityUtils.getPrincipal().getUsername());
+        if (userInDb.getId()!=null){
+            if (userInDb.getPassword().equals(passwordEncoder)){
+                UserEntity entity = converter.convertToEntity(userInDb);
+                entity.setPassword(EncrytedPasswordUtils.encrytePassword(userDTO.getPassword()));
+                userRepository.save(entity);
+            }
+        }
+
     }
 }

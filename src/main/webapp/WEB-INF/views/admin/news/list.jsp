@@ -54,7 +54,6 @@
                 <thead>
                 <th></th>
                 <th>Tên bài viết</th>
-                <th>Key</th>
                 <th>Chuyên mục</th>
                 <th>Ngày viết</th>
                 <th>Lượt xem</th>
@@ -67,7 +66,6 @@
                         <tr>
                             <td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}"></td>
                             <td>${item.name}</td>
-                            <td>${item.url}</td>
                             <td>${item.category.name}</td>
                             <td><fmt:formatDate type = "both"
                                                 dateStyle = "short" timeStyle = "short" pattern="dd-M-yyyy" value = "${item.createdDate}" /></td>

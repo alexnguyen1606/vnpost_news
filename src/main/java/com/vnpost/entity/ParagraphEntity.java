@@ -14,7 +14,7 @@ public class ParagraphEntity extends BaseEntity {
     private String image;
     @Column(name = "titleImage")
     private String titleImage;
-    @Column(name = "content")
+    @Column(name = "content",columnDefinition = "TEXT")
     private String content;
     @JoinColumn(name = "newsid")
     @ManyToOne

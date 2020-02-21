@@ -25,6 +25,33 @@ $('#btnDeleteUser').click(function (e) {
   data['listId'] = newsId;
   deleteUser(data);
 })
+$('#btnResetUser').click(function (e) {
+  e.preventDefault();
+  var data={};
+  var newsId = $('#userList').find('tbody input[type=checkbox]:checked').map(function () {
+    return $(this).val();
+  }).get();
+  data['listId'] = newsId;
+  resetPassword(data);
+})
+function resetPassword(data) {
+  $.ajax({
+    type: "PUT",
+    url: "http://localhost:8080/api/user/reset",
+    data: JSON.stringify(data),
+    dataType: "json",
+    contentType:"application/json",
+    success: function (response) {
+      alert("Reset Success")
+      console.log("success");
+      window.location.href="http://localhost:8080/admin/user";
+    },error: function(response){
+      console.log("fail");
+      alert("Reset fail");
+      window.location.href="http://localhost:8080/admin/user";
+    }
+  });
+}
 function enableUser(data) {
   $.ajax({
     type: "PUT",
@@ -56,7 +83,7 @@ function disableUser(data) {
       window.location.href="http://localhost:8080/admin/user";
     },error: function(response){
       console.log("fail");
-      alert("Disable fail");
+     // alert("Disable fail");
       window.location.href="http://localhost:8080/admin/user";
     }
   });

@@ -16,4 +16,9 @@ public interface IUserService {
     void enable(Long[] ids);
     void disable(Long[] ids);
     UserDTO findById(Long id);
+    boolean existById(Long id);
+    void resetPassword(Long id);
+    void resetAll(Long[] ids);
+
+    void changePassWord(UserDTO userDTO);
 }

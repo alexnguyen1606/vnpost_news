@@ -15,7 +15,7 @@
 <html>
 <head>
     <title></title>
-    <link rel="shortcut icon" href="/template/images/vnpost-logo.png" />
+    <link rel="shortcut icon" href="/template/images/vnpost-logo-thumbnail.png" />
 
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/font-awesome/4.2.0/css/font-awesome.min.css' />" />
@@ -65,8 +65,10 @@
 <script src="<c:url value='/template/admin/js/category-edit.js'/> "></script>
 <script src="<c:url value='/template/admin/js/category-list.js'/> "></script>
 <script src="<c:url value='/template/admin/js/news-list.js'/> "></script>
+<script src="<c:url value='/template/admin/js/news-edit.js'/> "></script>
 <script src="<c:url value='/template/admin/js/user-edit.js'/> "></script>
 <script src="<c:url value='/template/admin/js/user-list.js'/> "></script>
+<script src="<c:url value='/template/admin/js/upload.js'/> "></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <%--<script src="<c:url value='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'/> "></script>--%>

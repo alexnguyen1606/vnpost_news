@@ -15,19 +15,18 @@ import java.util.List;
 public class NewsEntity extends BaseEntity{
     @Column(name = "status",nullable = false)
     private Integer status;
-
     @NotBlank
-    @Column(name = "name",length = 50)
+    @Column(name = "name")
     private String name;
-    @Column(name = "title")
+    @Column(name = "title",columnDefinition = "TEXT")
     private String title;
     @Column(name = "thumbnail")
     private String thumbnail;
-    @Column(name = "url",length = 50)
+    @Column(name = "url")
     private String url;
-    @Column(name = "count",columnDefinition = "integer default 0")
+    @Column(name = "count")
     private Integer count;
-    @Column(name = "author",length = 50)
+    @Column(name = "author")
     private String author;
 
     @OneToMany(mappedBy = "news",fetch = FetchType.EAGER)

@@ -20,11 +20,16 @@ public class UserApi {
     }
     @DeleteMapping
     public void delete(@RequestBody UserDTO userDTO){
-        userService.delete(userDTO.getIdDelete());
+        userService.delete(userDTO.getListId());
     }
     @PutMapping("/disable")
     public void disable(@RequestBody UserDTO userDTO){
+        System.out.println("point");
         userService.disable(userDTO.getListId());
+    }
+    @PutMapping("/reset")
+    public void reset(@RequestBody UserDTO userDTO){
+        userService.resetAll(userDTO.getListId());
     }
     @PutMapping("/enable")
     public void enable(@RequestBody UserDTO userDTO){

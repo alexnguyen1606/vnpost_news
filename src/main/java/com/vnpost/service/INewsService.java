@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface INewsService {
     List<NewsDTO> findAll();
-    //List<NewsDTO> findAllByCategoryId(Long subCategoryId);
+
     List<NewsDTO> findAllByStatus(Integer status);
     List<NewsDTO> findAllByCategoryIdAndStatus(Long subCategoryId,Integer status);
     NewsDTO save(NewsDTO newsDTO);
@@ -24,4 +24,5 @@ public interface INewsService {
     void countViews(Long id);
     Boolean exitsById(Long id);
     List<NewsDTO> findLatest();
+    List<NewsDTO> search(String search);
 }

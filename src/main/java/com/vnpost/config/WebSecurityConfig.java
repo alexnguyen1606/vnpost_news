@@ -40,12 +40,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         //cho tất cả truy cập
         http.authorizeRequests().antMatchers("/*","/login","/logout").permitAll();
+        //.anyRequest().authenticated();
         //chỉ truy cập nếu có quyền
-        http.authorizeRequests().antMatchers("/admin*").access("hasAnyRole('ADMIN','USER')");
+    //    http.authorizeRequests().antMatchers("/admin/user*").access("hasAnyRole('ADMIN')");
+        http.authorizeRequests().antMatchers("/admin*","/changeinfo").access("hasAnyRole('ADMIN','USER')");
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
         // Ngoại lệ AccessDeniedException sẽ ném ra.
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/logout");
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/accessDenied");
 
         //cấu hình trang login
         http.authorizeRequests().and().formLogin()
@@ -54,9 +56,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("j_password")
                 .loginProcessingUrl("/j_spring_security_check")
                 .defaultSuccessUrl("/admin")
-                .failureUrl("/login?accessDenied=true")
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout");
+                .failureUrl("/login?accessDenied=true");
+                //.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true);
         http.authorizeRequests().and().rememberMe().tokenRepository(this.persistentTokenRepository());
+
     }
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {

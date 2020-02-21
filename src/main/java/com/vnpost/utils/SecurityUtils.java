@@ -9,7 +9,8 @@ import java.util.List;
 
 public class SecurityUtils {
     public static MyUser getPrincipal(){
-        MyUser myUser = (MyUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Object object =  SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MyUser myUser = (MyUser) object;
         return myUser;
     }
     public static List<String> getAutherities(){

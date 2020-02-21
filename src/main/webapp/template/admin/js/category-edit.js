@@ -40,13 +40,13 @@ function updateCategory(data) {
         contentType:"application/json",
         success: function (response) {
             console.log("add success");
-            alert('Add Success !');
+            alert("Update Success !");
             console.log(response);
             window.location.href="http://localhost:8080/admin/category";
         },
         error: function(response){
             console.log("fail");
-            alert("Add fail !");
+            alert("Update fail !");
             console.log(response);
         }
     });

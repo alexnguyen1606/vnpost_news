@@ -43,10 +43,11 @@
 
         <div class="col-sm-12">
             <div class="pull-right">
-                <a href="/admin/user/new" class="btn btn-primary " data-toggle="tooltip" title="Thêm bài viết"><i class="fa fa-plus"></i></a>
-                <button class="btn btn-danger "  id="btnDeleteUser" data-toggle="tooltip" title="Xóa bài viết"><i class="fa fa-trash" ></i></button>
-                <button class="btn btn-warning "  id="btnDisableUser" data-toggle="tooltip" title="Ẩn bài viết"><i class="fa fa-lock" ></i></button>
-                <button class="btn btn-success "  id="btnEnableUser" data-toggle="tooltip" title="Hiển thị bài viết"><i class="fa fa-unlock-alt" ></i></button>
+                <a href="/admin/user/new" class="btn btn-primary " data-toggle="tooltip" title="Thêm tài khoản"><i class="fa fa-plus"></i></a>
+                <button class="btn btn-danger "  id="btnResetUser" data-toggle="tooltip" title="Reset Password"><i class="fa fa-refresh" ></i></button>
+                <button class="btn btn-warning "  id="btnDisableUser" data-toggle="tooltip" title="Block tài khoản"><i class="fa fa-lock" ></i></button>
+                <button class="btn btn-success "  id="btnEnableUser" data-toggle="tooltip" title="Active Tài khoản"><i class="fa fa-unlock-alt" ></i></button>
+                <button class="btn btn-danger "  id="btnDeleteUser" data-toggle="tooltip" title="Xóa tài khoản"><i class="fa fa-trash" ></i></button>
             </div>
         </div>
         <div class="col-sm-12">
@@ -70,7 +71,7 @@
                             <td><fmt:formatDate type = "both"
                                                 dateStyle = "short" timeStyle = "short" pattern="dd-M-yyyy" value = "${item.createdDate}" /></td>
                             <td>
-                                <a href="/admin/user/edit?id=${item.id}" class="btn btn-success"  data-toggle="tooltip"
+                                <a href="/admin/user/edit/${item.id}" class="btn btn-success"  data-toggle="tooltip"
                                    title="Chỉnh sửa tài khoản ">
                                     <i class="fa fa-pencil"></i>
                                 </a>

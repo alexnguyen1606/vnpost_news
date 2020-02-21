@@ -18,12 +18,14 @@ $('#btnDisableNews').click(function (e) {
 })
 $('#btnDeleteNews').click(function (e) {
     e.preventDefault();
-    var data ={};
-    var newsId = $('#newsList').find('tbody input[type=checkbox]:checked').map(function () {
-        return $(this).val();
-    }).get();
-    data['listId'] = newsId;
-    deleteNews(data);
+    if(confirm("Xác nhận xóa bài viết")){
+        var data ={};
+        var newsId = $('#newsList').find('tbody input[type=checkbox]:checked').map(function () {
+            return $(this).val();
+        }).get();
+        data['listId'] = newsId;
+        deleteNews(data);
+    }
 })
 function enableNews(data) {
     $.ajax({
@@ -71,10 +73,12 @@ function deleteNews(data) {
         success: function (response) {
             alert("Delete Success")
             console.log("success");
+            console.log(response);
             window.location.href="http://localhost:8080/admin/news";
         },error: function(response){
             console.log("fail");
-            alert("Delete fail");
+           // alert("Delete fail");
+            console.log(response);
             window.location.href="http://localhost:8080/admin/news";
         }
     });

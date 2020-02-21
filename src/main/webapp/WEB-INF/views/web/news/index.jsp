@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>VN Post| Tin tức</title>
+
 </head>
 <body>
 <div class="row main-service-wrapper">
@@ -33,7 +34,7 @@
                         <h2><a href="/bai-viet/chi-tiet/id/${newest.id}/key/${newest.url}">
                             ${newest.name}</a></h2>
                         <div class="  col-img">
-                            <img src="/template/images/188241_di-tung-ngo.jpg" alt="">
+                            <img src="${newest.thumbnail}" alt="">
                         </div>
                         <div class=" short-content">
                             <p>${newest.title}</p>
@@ -48,7 +49,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3 most-view-news">
-                    <img src="/template/images/Văn-hóa-doanh-nghiệp.jpg" alt="">
+                    <img src="${mostViews.thumbnail}" alt="">
                     <h2>
                         <a href="/bai-viet/chi-tiet/id/${mostViews.id}/key/${mostViews.url}">
                             ${mostViews.name}</a>

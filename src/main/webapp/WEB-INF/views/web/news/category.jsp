@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>VN Post|Bài Viết</title>
+
 </head>
 <body>
 <div class="row main-service-wrapper">
@@ -30,7 +31,7 @@
                             <h2 class="">
                                 <a href="/bai-viet/chi-tiet/id/${item.id}/key/${item.url}">${item.name}</a>
                             </h2>
-                            <img src="/template/images/188241_di-tung-ngo.jpg" alt="">
+                            <img src="${item.thumbnail}" alt="">
                         </div>
                         <div class="col-md-12 news-short-content">
                             <label ><fmt:formatDate type = "both"

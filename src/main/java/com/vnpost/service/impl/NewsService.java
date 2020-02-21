@@ -2,71 +2,103 @@ package com.vnpost.service.impl;
 
 import com.vnpost.constant.SystemConstant;
 import com.vnpost.converter.NewsConverter;
+import com.vnpost.converter.ParagraphConverter;
 import com.vnpost.dto.NewsDTO;
+import com.vnpost.dto.ParagraphDTO;
 import com.vnpost.entity.NewsEntity;
+import com.vnpost.entity.ParagraphEntity;
+import com.vnpost.repository.CategoryRepository;
 import com.vnpost.repository.NewsRepository;
 import com.vnpost.service.INewsService;
+import com.vnpost.service.IParagraphService;
 import com.vnpost.sort.NewsSort;
+import com.vnpost.utils.FileUtils;
+import com.vnpost.utils.UploadFileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class NewsService implements INewsService {
     @Autowired
+    private IParagraphService paragraphService;
+
+    @Autowired
     private NewsRepository newsRepository;
     @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
     private NewsConverter converter;
+    @Autowired
+    private ParagraphConverter paragraphConverter;
+    @Autowired
+    private FileUtils fileUtils;
     @Override
     public List<NewsDTO> findAll() {
         return newsRepository.findAll()
                 .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
     }
 
-//    @Override
-//    public List<NewsDTO> findAllByCategoryId(Long categoryId) {
-//        return newsRepository.findAllByCategoryId(categoryId).stream()
-//                .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
-//    }
-
-
     @Override
     public List<NewsDTO> findAllByStatus(Integer status) {
-        return newsRepository.findAllByStatus(status)
+        return newsRepository.findByStatus(status)
                 .stream().map(item-> converter.convertToDTO(item)).collect(Collectors.toList());
     }
 
     @Override
     public List<NewsDTO> findAllByCategoryIdAndStatus(Long subCategoryId, Integer status) {
-        return newsRepository.findAllByCategoryIdAndStatus(subCategoryId,status)
+        return newsRepository.findByCategoryIdAndStatus(subCategoryId,status)
                 .stream().map(item-> converter.convertToDTO(item)).collect(Collectors.toList());
     }
-    @Transactional
+    //@Transactional
     @Override
     public NewsDTO save(NewsDTO newsDTO) {
         if (newsDTO.getId()==null){
-            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
-            return converter.convertToDTO(newsRepository.save(newsEntity));
+            try {
+                String thumbnail =fileUtils.SaveFile(newsDTO.getThumbnailMultipartFile());
+                if (!thumbnail.equals("")){
+                    newsDTO.setThumbnail(thumbnail);
+                }else {
+                    newsDTO.setThumbnail(SystemConstant.THUMBNAIL_PATH);
+                }
+                NewsEntity newsEntity = converter.convertToEntity(newsDTO);
+
+                newsEntity.setCount(0);
+                Long newsId =newsRepository.save(newsEntity).getId();
+                paragraphService.saveAll(newsDTO.getListParagraph(),newsId);
+                return findById(newsId);
+            }catch (Exception e){
+                System.out.println(e.toString());
+            }
         }
         return new NewsDTO();
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public NewsDTO update(NewsDTO newsDTO) {
         if (newsDTO.getId()!=null){
-            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
-            NewsEntity newsEntityInDb = newsRepository.findById(newsEntity.getId()).get();
-            newsEntity.setCreatedBy(newsEntityInDb.getCreatedBy());
-            newsEntity.setCreatedDate(newsEntityInDb.getCreatedDate());
-            return converter.convertToDTO(newsRepository.save(newsEntity));
+            try {
+                NewsEntity newsEntityInDb = newsRepository.findById(newsDTO.getId()).get();
+                String thumbnail =fileUtils.SaveFile(newsDTO.getThumbnailMultipartFile());
+                if (!thumbnail.equals("")){
+                    newsDTO.setThumbnail(thumbnail);
+                }else {
+                    newsDTO.setThumbnail(newsEntityInDb.getThumbnail());
+                }
+                NewsEntity newsEntity = converter.convertToEntity(newsDTO);
+                paragraphService.updateAll(newsDTO.getListParagraph(),newsEntity.getId());
+                newsEntity.setCount(newsEntityInDb.getCount());
+                newsEntity.setCreatedBy(newsEntityInDb.getCreatedBy());
+                newsEntity.setCreatedDate(newsEntityInDb.getCreatedDate());
+                return converter.convertToDTO(newsRepository.save(newsEntity));
+            }catch (Exception e){
+
+            }
         }
         return new NewsDTO();
     }
@@ -79,14 +111,8 @@ public class NewsService implements INewsService {
         return new NewsDTO();
     }
 
-//    @Override
-//    public NewsDTO findByUrl(String url) {
-//        if ((Boolean) StringUtils.isNotEmpty(url)){
-//            return converter.convertToDTO(newsRepository.findByUrl(url));
-//        }
-//        return new NewsDTO();
-//    }
-    @Transactional
+
+    //@Transactional
     @Override
     public void enableNews(NewsDTO newsDTO) {
 //            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
@@ -110,12 +136,9 @@ public class NewsService implements INewsService {
         }
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public void disableNews(NewsDTO newsDTO) {
-//            NewsEntity newsEntity = converter.convertToEntity(newsDTO);
-//            newsEntity.setStatus(SystemConstant.disable);
-//            newsRepository.save(newsEntity);
             newsDTO.setStatus(SystemConstant.disable);
             update(newsDTO);
     }
@@ -179,15 +202,27 @@ public class NewsService implements INewsService {
 
     @Override
     public List<NewsDTO> findLatest() {
-        List<NewsDTO> result = findAllByStatus(SystemConstant.enable);
-        Collections.sort(result, new Comparator<NewsDTO>() {
-            @Override
-            public int compare(NewsDTO o1, NewsDTO o2) {
-                return o1.getCreatedDate().compareTo(o2.getCreatedDate());
+        List<NewsDTO> newsList = newsRepository.findByStatusDesc(SystemConstant.enable)
+                .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+
+        List<NewsDTO> result = new ArrayList<>();
+        if (newsList.size()<=5){
+            for (int i=0;i<newsList.size();i++){
+                result.add(newsList.get(i));
             }
-        });
-        Collections.reverse(result);
+        }else {
+            for (int i=0;i<5;i++){
+                result.add(newsList.get(i));
+            }
+        }
+
         return result;
+    }
+
+    @Override
+    public List<NewsDTO> search(String search) {
+        return newsRepository.findByNameLike(search)
+                .stream().map(item -> converter.convertToDTO((NewsEntity) item)).collect(Collectors.toList());
     }
 
 }
