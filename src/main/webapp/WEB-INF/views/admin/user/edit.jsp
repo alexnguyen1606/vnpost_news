@@ -74,7 +74,8 @@
                 <label class="col-sm-3 control-label no-padding-right" >Quyền tài khoản</label>
                 <div class="col-sm-9">
                    <c:forEach items="${listRole}" var="item">
-                       <label class="checkbox-inline"><input type="checkbox"
+                       <label class="checkbox-inline">
+                           <input type="checkbox"
                           ${fn:contains(user.roles,item )? "checked":""}     name="code"  value="${item.code}">${item.name}</label>
                    </c:forEach>
                 </div>

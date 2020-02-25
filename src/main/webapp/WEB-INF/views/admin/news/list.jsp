@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>Danh sách tòa nhà</title>
+
 </head>
 <body>
 <div class="breadcrumbs" id="breadcrumbs">
@@ -65,7 +66,7 @@
                     <c:forEach items="${news}" var="item">
                         <tr>
                             <td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}"></td>
-                            <td>${item.name}</td>
+                            <td class="limit-text">${item.name}</td>
                             <td>${item.category.name}</td>
                             <td><fmt:formatDate type = "both"
                                                 dateStyle = "short" timeStyle = "short" pattern="dd-M-yyyy" value = "${item.createdDate}" /></td>
@@ -82,35 +83,35 @@
                 </c:if>
                 </tbody>
             </table>
+            <div class="col-sm-12 col-xs-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination" id="pagination"></ul>
+                </nav>
+            </div>
+
         </div>
     </div><!-- /.row -->
 </div><!-- /.page-content -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Danh sách nhân viên</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-hover" id="staffList">
-                    <thead>
-                    <tr>
-                        <th>Check</th>
-                        <th>Tên nhân viên</th>
-                    </tr>
-                    </thead>
-                </table>
-                <input type="hidden" id="buildingId" name="buildingId" value="">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btnAssignBuilding">Giao tòa nhà</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
 
-    </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        var totalPages = ${model.totalPages};
+        var currentPages = ${model.page};
+        var size = ${model.size};
+        window.pagObj = $('#pagination').twbsPagination({
+            totalPages:totalPages,
+            startPage:currentPages,
+            visiblePages: 10,
+            onPageClick: function (event, page) {
+                if (currentPages!=page) {
+                    window.location.href="http://localhost:8080/admin/news?page="+page+"&size="+size;
+                }
+            }
+        }).on('page', function (event, page) {
+            console.info(page + ' (from event listening)');
+        });
+    });
+</script>
 </body>
 </html>

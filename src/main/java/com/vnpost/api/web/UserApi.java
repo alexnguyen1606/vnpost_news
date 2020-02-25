@@ -11,8 +11,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserApi {
     @Autowired
     private IUserService userService;
-    @PutMapping("/api/user/changeinfo")
-    public void changePassword(@RequestBody UserDTO userDTO){
-        userService.changePassWord(userDTO);
-    }
+
 }

@@ -135,7 +135,7 @@
 
                         <li class="divider"></li>
                         <li>
-                            <a href="/changeinfo">
+                            <a href="/admin/user/changeinfo">
                                 <i class="ace-icon fa fa-key"></i>
                                 Change PassWord
                             </a>

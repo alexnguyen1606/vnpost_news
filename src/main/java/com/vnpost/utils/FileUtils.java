@@ -9,12 +9,16 @@ import java.io.File;
 @Component
 public class FileUtils {
     public String SaveFile(MultipartFile multipartFile){
+
         String originalName = multipartFile.getOriginalFilename();
-        File file = new File(SystemConstant.PATH+originalName);
+
+        String headerName=org.apache.commons.lang3.StringUtils.substringBeforeLast(originalName,".");
+        String nameFile = StringUtils.convert(headerName)+".jpg";
+        File file = new File(SystemConstant.PATH+nameFile);
         try {
             if(!originalName.equals("")){
                 multipartFile.transferTo(file);
-                String pathImage = SystemConstant.FILE_PATH+originalName;
+                String pathImage = nameFile;
                 return pathImage;
             }
         }

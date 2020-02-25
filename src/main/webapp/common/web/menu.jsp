@@ -8,7 +8,7 @@
         <ul>
             <c:if test="${fn:length(category)>0}">
                 <c:forEach items="${category}" var="item">
-                    <li><a href="/bai-viet/nhom/id/${item.id}/key/${item.url}">
+                    <li><a href="/bai-viet/nhom/${item.id}">
                         <div class="clearfix">
                             <div class="col-left col-sm-10 col-xs-10">
                                 <label>${item.name}</label>

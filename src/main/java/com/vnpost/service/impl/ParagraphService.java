@@ -33,7 +33,6 @@ public class ParagraphService implements IParagraphService {
     @Override
     public ParagraphDTO save(ParagraphDTO paragraphDTO,Long newsId) {
         if (paragraphDTO.getId()==null){
-
             paragraphDTO.setNews(newsService.findById(newsId));
             ParagraphEntity paragraphEntity = converter.convertToEntity(paragraphDTO);
             return converter.convertToDTO(paragraphRepository.save(paragraphEntity));
@@ -42,12 +41,13 @@ public class ParagraphService implements IParagraphService {
     }
 
     @Override
-    public ParagraphDTO update(ParagraphDTO paragraphDTO, Long newsId) {
+    public ParagraphDTO update(ParagraphDTO paragraphDTO) {
         if (paragraphDTO.getId()!=null){
             ParagraphEntity paragraphEntity = converter.convertToEntity(paragraphDTO);
             ParagraphEntity paragraphEntityInDb = paragraphRepository.findById(paragraphEntity.getId()).get();
             paragraphEntity.setCreatedDate(paragraphEntityInDb.getCreatedDate());
             paragraphEntity.setCreatedBy(paragraphEntityInDb.getCreatedBy());
+            paragraphEntity.setNews(paragraphEntityInDb.getNews());
             return converter.convertToDTO(paragraphRepository.save(paragraphEntity));
         }
         return new ParagraphDTO();
@@ -65,13 +65,20 @@ public class ParagraphService implements IParagraphService {
     }
 
     @Override
-    public void updateAll(List<ParagraphDTO> paragraphList, Long newsId) {
+    public void updateAll(List<ParagraphDTO> paragraphList) {
         for (ParagraphDTO paragraph : paragraphList){
             String imagePath = fileUtils.SaveFile(paragraph.getMultipartFile());
             if (!imagePath.equals("")){
                 paragraph.setImage(imagePath);
+            }else {
+                paragraph.setImage(findById(paragraph.getId()).getImage());
             }
-            update(paragraph,newsId);
+            update(paragraph);
         }
+    }
+
+    @Override
+    public ParagraphDTO findById(Long id) {
+        return converter.convertToDTO(paragraphRepository.findById(id).get());
     }
 }

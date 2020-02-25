@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -25,6 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private CustomSuccessHandler customSuccessHandler;
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return customSuccessHandler;
+    }
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -39,24 +44,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         //cho tất cả truy cập
-        http.authorizeRequests().antMatchers("/*","/login","/logout").permitAll();
-        //.anyRequest().authenticated();
-        //chỉ truy cập nếu có quyền
-    //    http.authorizeRequests().antMatchers("/admin/user*").access("hasAnyRole('ADMIN')");
-        http.authorizeRequests().antMatchers("/admin*","/changeinfo").access("hasAnyRole('ADMIN','USER')");
-        // Khi người dùng đã login, với vai trò XX.
-        // Nhưng truy cập vào trang yêu cầu vai trò YY,
-        // Ngoại lệ AccessDeniedException sẽ ném ra.
+        http.authorizeRequests().antMatchers("/admin").access("hasAuthority('USER') or hasAuthority('ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/user").access("hasAuthority('ADMIN')");
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/accessDenied");
-
+        http.authorizeRequests().antMatchers("/admin/user/changeinfo").authenticated();
         //cấu hình trang login
-        http.authorizeRequests().and().formLogin()
+        http.authorizeRequests()
+
+                .and().formLogin()
                 .loginPage("/login")
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
                 .loginProcessingUrl("/j_spring_security_check")
-                .defaultSuccessUrl("/admin")
-                .failureUrl("/login?accessDenied=true");
+                .successHandler(customSuccessHandler)
+
+                .failureUrl("/login?accessDenied=true").permitAll()
+//                .and()
+//                .exceptionHandling().accessDeniedPage("/accessDenied")
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/")
+                .invalidateHttpSession(true);
+
                 //.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true);
         http.authorizeRequests().and().rememberMe().tokenRepository(this.persistentTokenRepository());
 

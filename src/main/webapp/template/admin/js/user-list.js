@@ -42,7 +42,7 @@ function resetPassword(data) {
     dataType: "json",
     contentType:"application/json",
     success: function (response) {
-      alert("Reset Success")
+      alert("Reset Success");
       console.log("success");
       window.location.href="http://localhost:8080/admin/user";
     },error: function(response){
@@ -83,7 +83,7 @@ function disableUser(data) {
       window.location.href="http://localhost:8080/admin/user";
     },error: function(response){
       console.log("fail");
-     // alert("Disable fail");
+      alert("Disable fail");
       window.location.href="http://localhost:8080/admin/user";
     }
   });
@@ -96,12 +96,12 @@ function deleteUser(data) {
     dataType: "json",
     contentType:"application/json",
     success: function (response) {
-      alert("Delete Success")
+      alert("Delete Success");
       console.log("success");
       window.location.href="http://localhost:8080/admin/user";
     },error: function(response){
       console.log("fail");
-      alert("Delete fail");
+     // alert("Delete fail");
       window.location.href="http://localhost:8080/admin/user";
     }
   });

@@ -1,12 +1,10 @@
 package com.vnpost.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
@@ -19,7 +17,7 @@ public class RoleEntity extends BaseEntity {
 
     @Column(name = "code",length = 50)
     private String code;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
-    private List<UserEntity> listUsers = new ArrayList<>();
+    private List<UserEntity> users = new ArrayList<>();
 }

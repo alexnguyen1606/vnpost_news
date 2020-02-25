@@ -147,11 +147,11 @@
                     </div>
                 </div>
                 <div class="col-sm-6 right">
-                    <div class=" news-item">
-                        <div class="col-sm-3 news-tumnail">
+                    <div class="row news-item" style="margin-bottom: 50px;">
+                        <div class="col-md-4 col-sm-3 news-tumnail">
                             <img src="/template/images/ImageCaching (1).jpg" alt="">
                         </div>
-                        <div class="col-sm-9 news-description">
+                        <div class="col-md-8 col-sm-9 news-description">
                             <div class="news-title">
                                 <a href="">Phát động Chương trình thi đua Phấn đấu hoàn thành vượt mức các chỉ tiêu kế hoạch 2020</a>
                             </div>
@@ -160,11 +160,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" news-item">
-                        <div class="col-sm-3 news-tumnail">
+                    <div class="row news-item" style="margin-bottom: 50px;">
+                        <div class="col-md-4 col-sm-3 news-tumnail">
                             <img src="/template/images/ImageCaching (2).jpg" alt="">
                         </div>
-                        <div class="col-sm-9 news-description">
+                        <div class="col-md-8 col-sm-9 news-description">
                             <div class="news-title">
                                 <a href="">Phát động Chương trình thi đua Phấn đấu hoàn thành vượt mức các chỉ tiêu kế hoạch 2020</a>
                             </div>
@@ -173,11 +173,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" news-item">
-                        <div class="col-sm-3 news-tumnail">
+                    <div class="row news-item" style="margin-bottom: 50px;">
+                        <div class="col-md-4 col-sm-3 news-tumnail">
                             <img src="/template/images/ImageCaching (13).jpg" alt="">
                         </div>
-                        <div class="col-sm-9 news-description">
+                        <div class="col-md-8 col-sm-9 news-description">
                             <div class="news-title">
                                 <a href="">Phát động Chương trình thi đua Phấn đấu hoàn thành vượt mức các chỉ tiêu kế hoạch 2020</a>
                             </div>
@@ -186,11 +186,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" news-item">
-                        <div class="col-sm-3 news-tumnail">
+                    <div class="row news-item" style="margin-bottom: 50px;">
+                        <div class="col-md-4 col-sm-3 news-tumnail">
                             <img src="/template/images/ImageCachin1g.jpg" alt="">
                         </div>
-                        <div class="col-sm-9 news-description">
+                        <div class="col-md-8 col-sm-9 news-description">
                             <div class="news-title">
                                 <a href="">Phát động Chương trình thi đua Phấn đấu hoàn thành vượt mức các chỉ tiêu kế hoạch 2020</a>
                             </div>

@@ -1,11 +1,13 @@
 package com.vnpost.controller.admin;
 
 import com.vnpost.constant.SystemConstant;
+import com.vnpost.dto.BaseDTO;
 import com.vnpost.dto.NewsDTO;
-import com.vnpost.dto.NewsViewModel;
 import com.vnpost.service.ICategoryService;
 import com.vnpost.service.INewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,30 +23,53 @@ public class NewsController {
     private INewsService newsService;
 
     @GetMapping
-    public ModelAndView listNews(){
+    public ModelAndView listNews( //@RequestParam(name = "page",required = false,defaultValue = "1") Integer page
+     //       ,@RequestParam(name = "size",required = false,defaultValue = "5") Integer size
+    ){
         ModelAndView mav = new ModelAndView("admin/news/list");
+//        BaseDTO baseModel = new BaseDTO();
+//        Integer totalItem = newsService.findAllByStatus(SystemConstant.enable).size();
+//        baseModel.setSize(size);
+//        baseModel.setPage(page);
+//        baseModel.setTotalPages((int) Math.ceil((double)totalItem/size));
+//        Pageable pageable = PageRequest.of(page-1,size);
         mav.addObject("news",newsService.findAllByStatus(SystemConstant.enable));
+     //   mav.addObject("model",baseModel);
         return mav;
     }
     @GetMapping("/disable")
-    public ModelAndView listNewsDisable(){
+    public ModelAndView listNewsDisable( //@RequestParam(name = "page",required = false,defaultValue = "1") Integer page
+            //,@RequestParam(name = "size",required = false,defaultValue = "8") Integer size
+    ){
         ModelAndView mav = new ModelAndView("admin/news/list");
+//        BaseDTO baseModel = new BaseDTO();
+//        Integer totalItem = newsService.findAllByStatus(SystemConstant.disable).size();
+//        baseModel.setSize(size);
+//        baseModel.setPage(page);
+//        baseModel.setTotalPages(totalItem/size);
+//        Pageable pageable = PageRequest.of(page-1,size);
         mav.addObject("news",newsService.findAllByStatus(SystemConstant.disable));
+        //mav.addObject("model",baseModel);
         return mav;
     }
     @GetMapping("/edit/{id}")
-    public String editNews(@PathVariable(value = "id",required = false) Long idNews,Model model){
+    public String editNews(@PathVariable(value = "id",required = false) Long idNews,Model model
 
-        //NewsViewModel newsViewModel = new NewsViewModel();
-        //newsViewModel.setNews(newsService.findById(idNews));
-        model.addAttribute("viewmodel",newsService.findById(idNews));
+
+    ){
+
+        NewsDTO viewModel = newsService.findById(idNews);
+        viewModel.setParagraph1(viewModel.getListParagraph().get(0));
+        viewModel.setParagraph2(viewModel.getListParagraph().get(1));
+        viewModel.setParagraph3(viewModel.getListParagraph().get(2));
+        model.addAttribute("viewmodel",viewModel);
         model.addAttribute("category",categoryService.findAll());
         return "admin/news/edit";
     }
     @PostMapping("/edit")
-    public RedirectView update(@ModelAttribute("viewmodel") NewsDTO viewModel){
+    public String update(@ModelAttribute("viewmodel") NewsDTO viewModel){
         System.out.println("check point update");
-        RedirectView rv = new RedirectView("/admin/news");
+        //RedirectView rv = new RedirectView("/admin/news");
         viewModel.getListParagraph().add(viewModel.getParagraph1());
         viewModel.getListParagraph().add(viewModel.getParagraph2());
         viewModel.getListParagraph().add(viewModel.getParagraph3());
@@ -54,8 +79,8 @@ public class NewsController {
             newsService.update(viewModel);
         }
 
-        rv.addStaticAttribute("news",newsService.findAllByStatus(SystemConstant.enable));
-        return rv;
+//        rv.addStaticAttribute("news",newsService.findAllByStatus(SystemConstant.enable));
+        return "redirect:/admin/news";
     }
     @GetMapping("/create")
     public String createNews(Model model){

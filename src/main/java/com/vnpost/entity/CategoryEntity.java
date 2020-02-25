@@ -17,7 +17,6 @@ public class CategoryEntity extends BaseEntity{
     @Column(name = "name",length = 50,nullable = false,unique = true)
     private String name;
 
-
     @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
     private List<NewsEntity> listNews = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 <%@include file="/common/taglib.jsp" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="ctag" uri="WEB-INF/customtag/custom.tld" %>
 <%--
   Created by IntelliJ IDEA.
   User: User

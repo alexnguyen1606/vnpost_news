@@ -1,5 +1,6 @@
 package com.vnpost.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,13 +23,17 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password",length = 255,nullable = false)
     private String password;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "fullname")
     private String fullName;
 
     @Column
     private Integer status;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"),
             inverseJoinColumns = @JoinColumn(name = "roleid"))
     private List<RoleEntity> roles = new ArrayList<>();

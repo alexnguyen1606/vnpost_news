@@ -12,8 +12,8 @@
 
 </head>
 <body>
-<div class="row main-service-wrapper">
-    <div class="container">
+<div class="container main-service-wrapper">
+    <div class="row">
         <div class="col-md-3">
         <%@include file="/common/web/menu.jsp"%>    
         </div>
@@ -22,7 +22,7 @@
                 <div class="col-sm-12 header-category">
                     <ul class="list-unstyled list-inline">
                         <c:forEach items="${category}" var="item">
-                            <li class=""><a href="/bai-viet/nhom/id/${item.id}/key/${item.url}">${item.name}</a></li>
+                            <li class=""><a href="/bai-viet/nhom/${item.id}?page=1&size=8">${item.name}</a></li>
                         </c:forEach>
                     </ul>
                 </div>
@@ -31,12 +31,12 @@
             <div class="container-fluid content-news-group">
                 <div class="col-md-6 lastest-news">
                     <div class="container-fulid">
-                        <h2><a href="/bai-viet/chi-tiet/id/${newest.id}/key/${newest.url}">
+                        <h2><a href="/bai-viet/chi-tiet/${newest.id}">
                             ${newest.name}</a></h2>
                         <div class="  col-img">
-                            <img src="${newest.thumbnail}" alt="">
+                            <img src="<c:url value='/template/images/${newest.thumbnail}'/>" alt="">
                         </div>
-                        <div class=" short-content">
+                        <div class=" short-content limit-text">
                             <p>${newest.title}</p>
                         </div>
                     </div>
@@ -44,14 +44,14 @@
                 <div class="col-md-3 older-news ">
                     <ul>
                         <c:forEach items="${lastedNews}" var="item">
-                            <li><a href="/bai-viet/chi-tiet/id/${item.id}/key/${item.url}">${item.name}</a></li>
+                            <li><a class=""  href="/bai-viet/chi-tiet/${item.id}">${item.name}</a></li>
                         </c:forEach>
                     </ul>
                 </div>
                 <div class="col-md-3 most-view-news">
-                    <img src="${mostViews.thumbnail}" alt="">
+                    <img src="<c:url value='/template/images/${mostViews.thumbnail}'/>" alt="">
                     <h2>
-                        <a href="/bai-viet/chi-tiet/id/${mostViews.id}/key/${mostViews.url}">
+                        <a href="/bai-viet/chi-tiet/${mostViews.id}">
                             ${mostViews.name}</a>
                     </h2>
                 </div>

@@ -2,7 +2,6 @@ package com.vnpost.api.admin;
 
 import com.vnpost.constant.SystemConstant;
 import com.vnpost.dto.NewsDTO;
-import com.vnpost.dto.TestDTO;
 import com.vnpost.service.INewsService;
 import com.vnpost.utils.UploadFileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -51,10 +50,5 @@ public class NewsApi {
     public void deleteNews(@RequestBody NewsDTO newsDTO){
         newsService.deleteAll(newsDTO.getListId());
     }
-    @ResponseBody
-    @PostMapping("/test")
-    public void save(@RequestBody TestDTO testDTO){
-        byte[] bytes = Base64.getDecoder().decode(StringUtils.substringBefore(testDTO.getBase64(),","));
-        uploadFileUtils.writeOrUpdate(bytes,testDTO.getName());
-    }
+
 }

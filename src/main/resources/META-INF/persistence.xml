@@ -8,6 +8,10 @@
         <class>com.vnpost.entity.CategoryEntity</class>
         <class>com.vnpost.entity.ParagraphEntity</class>
         <class>com.vnpost.entity.SubcribEntity</class>
+        <class>com.vnpost.entity.PostageFinaceEntity</class>
+        <class>com.vnpost.entity.PostageDeliveryEntity</class>
+        <class>com.vnpost.entity.DeliveryServiceEntity</class>
+        <class>com.vnpost.entity.MediaDistributionEntity</class>
     </persistence-unit>
 </persistence>
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IUserService {
-    public ArrayList<UserDTO> findAll();
+    ArrayList<UserDTO> findAll();
     UserDTO save(UserDTO userDTO);
     UserDTO update(UserDTO userDTO);
     UserDTO findByUsername(String username);

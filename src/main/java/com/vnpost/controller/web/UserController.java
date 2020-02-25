@@ -5,8 +5,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller(value = "webUserController")
 public class UserController {
-    @GetMapping("/changeinfo")
-    public String changeInfo(){
-        return "web/user/changeInfo";
-    }
+
 }

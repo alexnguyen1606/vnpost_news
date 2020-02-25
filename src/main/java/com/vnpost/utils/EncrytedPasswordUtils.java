@@ -7,6 +7,4 @@ public class EncrytedPasswordUtils {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
     }
-
-
 }

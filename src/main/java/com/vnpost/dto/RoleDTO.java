@@ -15,5 +15,5 @@ public class RoleDTO extends BaseDTO {
     private String code;
 
 
-    private List<UserDTO> listUsers = new ArrayList<>();
+    private List<UserDTO> users = new ArrayList<>();
 }

@@ -13,6 +13,7 @@ import java.lang.reflect.Type;
 public class UserConverter implements IDTO<UserDTO>,IEntity<UserEntity>{
     @Autowired
     private ModelMapper modelMapper;
+
     @Override
     public UserDTO convertToDTO(Object object) {
         UserEntity entity = (UserEntity) object;

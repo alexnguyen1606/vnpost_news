@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="/common/taglib.jsp"></jsp:include>
-<div class="row header">
-    <div class="container">
+<div class="container header">
+    <div class="row">
         <div class="logo-wrapper col-sm-6 col-xs-12" >
             <a href="/" class="site-logo">
                 <img src="/template/images/vnpost-logo1.png" alt="vnpost">
@@ -15,7 +15,7 @@
                             <img src="/template/images/mess.png" alt="">
                         </div>
                         <div class="tool-text" >
-                            <label for="">Đánh gía &</label>
+                            <label >Đánh gía &</label>
                             <span>Khiếu Nại</span>
                         </div>
                     </a>

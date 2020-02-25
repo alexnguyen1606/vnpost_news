@@ -26,7 +26,7 @@ $('#btnChangeInfo').click(function () {
   $.each(formData,function (index,v) {
       data[""+v.name+""] = v.value;
   })
-
+  changeInfo(data);
 });
 function changeInfo(data) {
   $.ajax({
@@ -39,12 +39,13 @@ function changeInfo(data) {
       console.log("add success");
       alert("Change Success !");
       console.log(response);
-      window.location.href="http://localhost:8080/admin";
+      window.location.href="http://localhost:8080/logout";
     },
     error: function(response){
       console.log("fail");
       alert("Change fail !");
       console.log(response);
+      window.location.href="http://localhost:8080/admin";
     }
   });
 }

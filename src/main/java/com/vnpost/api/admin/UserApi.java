@@ -22,17 +22,21 @@ public class UserApi {
     public void delete(@RequestBody UserDTO userDTO){
         userService.delete(userDTO.getListId());
     }
+
     @PutMapping("/disable")
-    public void disable(@RequestBody UserDTO userDTO){
+    public UserDTO disable(@RequestBody UserDTO userDTO){
         System.out.println("point");
         userService.disable(userDTO.getListId());
+        return userDTO;
     }
     @PutMapping("/reset")
-    public void reset(@RequestBody UserDTO userDTO){
+    public UserDTO reset(@RequestBody UserDTO userDTO){
         userService.resetAll(userDTO.getListId());
+        return userDTO;
     }
     @PutMapping("/enable")
-    public void enable(@RequestBody UserDTO userDTO){
+    public UserDTO enable(@RequestBody UserDTO userDTO){
         userService.enable(userDTO.getListId());
+        return userDTO;
     }
 }

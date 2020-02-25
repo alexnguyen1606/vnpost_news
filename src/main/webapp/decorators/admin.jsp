@@ -17,17 +17,19 @@
     <title></title>
     <link rel="shortcut icon" href="/template/images/vnpost-logo-thumbnail.png" />
 
+
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/font-awesome/4.2.0/css/font-awesome.min.css' />" />
 
     <!-- text fonts -->
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/fonts/fonts.googleapis.com.css' />" />
-
+    <link rel="stylesheet" href="<c:url value='/template/admin/assets/custom-css/list-news.css' />">
     <!-- ace styles -->
     <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/ace.min.css' />" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!-- ace settings handler -->
     <script src="<c:url value='/template/admin/assets/js/ace-extra.min.js' />"></script>
+        <!-- pagging-->
 
 </head>
 
@@ -48,7 +50,7 @@
 
     <%--<%@ include file="/common/admin/footer.jsp"%>--%>
 </div> <!-- main container -->
-<%@include file="/common/admin/footer.jsp"%>
+<%--<%@include file="/common/admin/footer.jsp"%>--%>
 <script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>
 <script src="<c:url value='/template/admin/assets/js/ace-extra.min.js'/>"></script>
 <script src="<c:url value='/template/admin/assets/js/jquery-ui.custom.min.js' />"></script>

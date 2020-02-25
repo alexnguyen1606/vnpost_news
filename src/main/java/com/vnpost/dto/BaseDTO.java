@@ -15,9 +15,9 @@ public class BaseDTO {
     private Date modifiedDate;
 
     private String modifiedBy;
-
+    private Integer totalPages;
     private Integer page;
-    private Integer limit;
+    private Integer size;
     private Long[] idDelete = new Long[]{};
     private Long[] listId = new Long[]{};
 }

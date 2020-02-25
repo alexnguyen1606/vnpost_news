@@ -13,9 +13,9 @@
 
 </head>
 <body>
-<div class="row main-service-wrapper">
-    <div class="container">
-        <div class="col-md-3">
+<div class="container main-service-wrapper">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
             <%@include file="/common/web/menu.jsp"%>
         </div>
         <div class=" col-md-9  news-index-col">
@@ -31,7 +31,9 @@
                     <c:if test="${fn:length(newsItem.listParagraph)>0}">
                         <c:forEach items="${newsItem.listParagraph}" var="paragraph">
                             <div class="img-content">
-                                <img src="${paragraph.image}" alt="">
+                                <div style="width: 500px">
+                                    <img src="<c:url value='/template/images/${paragraph.image}'/>"  alt="">
+                                </div>
                                 <p class="img-title">${paragraph.titleImage}</p>
                                 <p>${paragraph.content}</p>
                             </div>
@@ -44,6 +46,22 @@
                         <label  class="author">${newsItem.author}</label>
                     </div>
                 <%--</c:forEach>--%>
+            </div>
+            <div class="col-sm-12 news-footer">
+                <div class="header-news-footer">
+                    <h2>Các tin khác</h2>
+                </div>
+                <div class="body-news-footer">
+                    <ul>
+                        <c:forEach items="${news}" var="item">
+                            <li><a href="/bai-viet/chi-tiet/${item.id}">${item.name}</a>
+                                <label class="news-date" style="margin-left: 20px;"><fmt:formatDate type = "both"
+                                    dateStyle = "short" timeStyle = "short" pattern="dd-M-yyyy hh:mm" value = "${item.createdDate}" />
+                                </label></li>
+                        </c:forEach>
+
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

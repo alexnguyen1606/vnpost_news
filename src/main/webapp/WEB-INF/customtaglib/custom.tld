@@ -1,0 +1,38 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>NameTag TLD</short-name>
+    <uri>WEB-INF/customtag/custom.tld</uri>
+    <tag>
+        <name>nameTag</name>
+        <tag-class>com.vnpost.customtag.NameTag</tag-class>
+        <body-content>empty</body-content>
+
+        <attribute>
+            <name>fieldName</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>objectName</name>
+            <required>true</required>
+
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>bookmark</name>
+        <tag-class>com.vnpost.customtag.BookmarkTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>fieldName</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>objectName</name>
+            <required>true</required>
+
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>

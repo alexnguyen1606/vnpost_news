@@ -5,7 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TestDTO {
-    private String base64;
+public class SubcribDTO extends BaseDTO {
+
+    private String email;
+
     private String name;
 }

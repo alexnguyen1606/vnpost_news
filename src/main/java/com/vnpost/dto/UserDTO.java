@@ -1,5 +1,6 @@
 package com.vnpost.dto;
 
+import com.vnpost.annotations.Name;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,8 @@ public class UserDTO extends BaseDTO {
 
     private String password;
 
+    private String email;
+
     private String repeatPassword;
 
 
@@ -22,7 +25,9 @@ public class UserDTO extends BaseDTO {
 
 
     private Integer status;
+
     private List<String> listRole = new ArrayList<>();
 
     private List<RoleDTO> roles = new ArrayList<>();
+
 }

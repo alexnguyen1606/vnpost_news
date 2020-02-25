@@ -1,18 +1,20 @@
 package com.vnpost.service;
 
 import com.vnpost.dto.NewsDTO;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface INewsService {
-    List<NewsDTO> findAll();
-
+    List<NewsDTO> findAll(Pageable pageable);
+    List<NewsDTO> findAllByStatus(Integer status,Pageable pageable);
     List<NewsDTO> findAllByStatus(Integer status);
-    List<NewsDTO> findAllByCategoryIdAndStatus(Long subCategoryId,Integer status);
+    List<NewsDTO> findAllByCategoryIdAndStatus(Long categoryId,Integer status);
+    List<NewsDTO> findAllByCategoryIdAndStatus(Long categoryId, Integer status, Pageable pageable);
+    Integer totalItem(Long categoryId);
     NewsDTO save(NewsDTO newsDTO);
     NewsDTO update(NewsDTO newsDTO);
     NewsDTO findById(Long id);
-    //NewsDTO findByUrl(String url);
     void disableNews(NewsDTO newsDTO);
     void enableNews(NewsDTO newsDTO);
     void disableAll(Long[] ids);

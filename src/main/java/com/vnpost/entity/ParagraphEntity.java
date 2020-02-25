@@ -1,5 +1,6 @@
 package com.vnpost.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ public class ParagraphEntity extends BaseEntity {
     private String titleImage;
     @Column(name = "content",columnDefinition = "TEXT")
     private String content;
+    @JsonIgnore
     @JoinColumn(name = "newsid")
     @ManyToOne
     private NewsEntity news;

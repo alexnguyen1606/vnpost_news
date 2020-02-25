@@ -1,5 +1,6 @@
 package com.vnpost.controller.web;
 
+import com.vnpost.constant.SystemConstant;
 import com.vnpost.dto.IndexDTO;
 import com.vnpost.dto.NewsDTO;
 import com.vnpost.service.INewsService;
@@ -33,14 +34,14 @@ public class NewsController {
         mav.addObject("category",categoryService.findAll());
         return mav;
     }
-    @GetMapping("/bai-viet/chi-tiet/id/{id}/key/{key}")
-    public ModelAndView detail(@PathVariable("id") Long idNews,@PathVariable("key") String keyNews){
+    @GetMapping("/bai-viet/chi-tiet/{id}")
+    public ModelAndView detail(@PathVariable("id") Long idNews){
         ModelAndView mav = new ModelAndView("web/news/detail");
         NewsDTO news = newsService.findById(idNews);
         newsService.countViews(news.getId());
-        newsService.countViews(news.getId());
         mav.addObject("category",categoryService.findAll());
         mav.addObject("newsItem",news);
+        mav.addObject("news",newsService.findAllByCategoryIdAndStatus(news.getCategory().getId(), SystemConstant.enable));
         return mav;
     }
 
