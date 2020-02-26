@@ -34,8 +34,8 @@
         <h1>
             Dashboard
             <small>
-                <a href="${newsURL}"><i class="ace-icon fa fa-angle-double-right"></i>
-                    Bài viết</a>
+                <a href="/admin/user"><i class="ace-icon fa fa-angle-double-right"></i>
+                    Tài khoản</a>
             </small>
         </h1>
     </div><!-- /.page-header -->
@@ -44,7 +44,7 @@
 
         <div class="col-sm-12">
             <div class="pull-right">
-                <a href="/admin/user/new" class="btn btn-primary " data-toggle="tooltip" title="Thêm tài khoản"><i class="fa fa-plus"></i></a>
+                <a href="/admin/user/create" class="btn btn-primary " data-toggle="tooltip" title="Thêm tài khoản"><i class="fa fa-plus"></i></a>
                 <button class="btn btn-danger "  id="btnResetUser" data-toggle="tooltip" title="Reset Password"><i class="fa fa-refresh" ></i></button>
                 <button class="btn btn-warning "  id="btnDisableUser" data-toggle="tooltip" title="Block tài khoản"><i class="fa fa-lock" ></i></button>
                 <button class="btn btn-success "  id="btnEnableUser" data-toggle="tooltip" title="Active Tài khoản"><i class="fa fa-unlock-alt" ></i></button>
@@ -76,6 +76,8 @@
                                    title="Chỉnh sửa tài khoản ">
                                     <i class="fa fa-pencil"></i>
                                 </a>
+                                <a href="/admin/user/delete/${item.id}" class="btn btn-danger" title="Xóa tài khoản"
+                                   data-toggle="tooltip"><i class="fa fa-trash" ></i></a>
                             </td>
                         </tr>
                     </c:forEach>

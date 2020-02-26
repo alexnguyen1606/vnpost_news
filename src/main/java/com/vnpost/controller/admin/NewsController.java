@@ -54,8 +54,6 @@ public class NewsController {
     }
     @GetMapping("/edit/{id}")
     public String editNews(@PathVariable(value = "id",required = false) Long idNews,Model model
-
-
     ){
 
         NewsDTO viewModel = newsService.findById(idNews);

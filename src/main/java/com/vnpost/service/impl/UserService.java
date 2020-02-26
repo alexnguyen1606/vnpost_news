@@ -43,15 +43,15 @@ public class UserService implements IUserService {
     @Override
     public UserDTO save(UserDTO userDTO) {
         if (userDTO.getId()==null){
-            for (String code : userDTO.getListRole()){
-                RoleDTO roleDTO = roleService.findByCode(code);
-                userDTO.getRoles().add(roleDTO);
-            }
             userDTO.setPassword(SystemConstant.defaultPassword);
             UserEntity entity = converter.convertToEntity(userDTO);
             UserEntity entity1 = null;
             try {
                  entity1= userRepository.save(entity);
+                 for (String code : userDTO.getListRole()){
+                     entity1.getRoles().add(roleRepository.findByCode(code));
+                 }
+                 userRepository.save(entity1);
             }catch (Exception e){
                 System.out.println(e.toString());
             }
@@ -99,7 +99,7 @@ public class UserService implements IUserService {
     @Override
     public void delete(Long[] ids) {
         for (Long id : ids){
-            roleRepository.deleteById(id);
+            deleteOne(id);
         }
     }
 
@@ -150,6 +150,16 @@ public class UserService implements IUserService {
     public void resetAll(Long[] ids) {
         for (Long id: ids) {
             resetPassword(id);
+        }
+    }
+
+    @Override
+    public void deleteOne(Long id) {
+        if (existById(id)){
+            UserEntity userEntity = userRepository.findById(id).get();
+            userEntity.getRoles().clear();
+            userRepository.save(userEntity);
+            userRepository.deleteById(id);
         }
     }
 

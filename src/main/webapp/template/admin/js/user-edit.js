@@ -3,10 +3,8 @@ $('#btnAddUser').click(function () {
   var listRole=[];
   var formData = $('#formEdit').serializeArray();
   $.each(formData,function (index,v) {
-    if (v.name=="code"){
-      var role = {};
-      role[""+v.name+""] = v.value;
-      listRole.push(role);
+    if (v.name=="listRole"){
+      listRole.push(v.value);
     } else{
       data[""+v.name+""] = v.value;
     }
@@ -64,8 +62,9 @@ function addUser(data) {
     },
     error: function(response){
       console.log("fail");
-      alert("Add fail !");
+      // alert("Add fail !");
       console.log(response);
+      window.location.href="http://localhost:8080/admin/user";
     }
   });
 }

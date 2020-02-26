@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.stream.Collectors;
+
 @Controller(value = "userAdmin")
 @RequestMapping("/admin/user")
 public class UserController {
@@ -35,18 +37,35 @@ public class UserController {
         mav.addObject("user",new UserDTO());
         return mav;
     }
-    @GetMapping("/new")
+    @GetMapping("/create")
     public ModelAndView create(){
-        ModelAndView mav = new ModelAndView("admin/user/edit");
-        mav.addObject("user",new UserDTO());
-        mav.addObject("listRole",roleService.findAll());
+        ModelAndView mav = new ModelAndView("admin/user/create");
+        mav.addObject("viewmodel",new UserDTO());
+        mav.addObject("roles",roleService.findAll());
         return mav;
     }
-    @GetMapping("/edit/{id}")
+    @GetMapping(value = {"/edit/{id}"})
     public ModelAndView edit(@PathVariable(value = "id") Long userId){
         ModelAndView mav = new ModelAndView("admin/user/edit");
-            mav.addObject("user",userService.findById(userId));
-            mav.addObject("listRole",roleService.findAll());
+        UserDTO viewmodel = userService.findById(userId);
+        viewmodel.getRoles().stream().map(item-> viewmodel.getListRole().add(item.getCode())).collect(Collectors.toList());
+            mav.addObject("viewmodel",viewmodel);
+            mav.addObject("roles",roleService.findAll());
         return mav;
+    }
+    @PostMapping("/edit")
+    public RedirectView createOrUpdate(@ModelAttribute("viewmodel") UserDTO userDTO){
+        Long id = userDTO.getId();
+        if (id==null){
+            userService.save(userDTO);
+        }else {
+            userService.update(userDTO);
+        }
+        return new RedirectView("/admin/user");
+    }
+    @GetMapping(value = {"/delete/{id}"})
+    public RedirectView delete(@PathVariable("id") Long id){
+        userService.deleteOne(id);
+        return new RedirectView("/admin/user");
     }
 }

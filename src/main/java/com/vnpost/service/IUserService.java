@@ -19,6 +19,6 @@ public interface IUserService {
     boolean existById(Long id);
     void resetPassword(Long id);
     void resetAll(Long[] ids);
-
+    void deleteOne(Long id);
     void changePassWord(UserDTO userDTO);
 }

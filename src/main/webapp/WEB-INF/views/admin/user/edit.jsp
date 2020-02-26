@@ -44,51 +44,53 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <form class="form-horizontal" role="form" id="formEdit">
-            <input type="hidden" id="id" name="id" value="${user.id}">
+        <form:form action="/admin/user/edit" method="post" modelAttribute="viewmodel" class="form-horizontal" role="form" >
+            <form:input type="hidden" path="id" value="${viewmodel.id}"></form:input>
+            <form:input type="hidden" path="password" value="${viewmodel.password}"></form:input>
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="fullName">Họ tên </label>
+                <label class="col-sm-3 control-label no-padding-right"  for="fullName">Họ tên </label>
 
                 <div class="col-sm-9">
-                    <input type="text" id="fullName" name="fullName" value="${user.fullName}" placeholder="" class="col-xs-10 col-sm-5" />
+                    <form:input type="text" path="fullName" required="required"  value="${viewmodel.fullName}" placeholder="" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="userName">Username </label>
 
                 <div class="col-sm-9">
-                    <input type="text" id="userName" name="userName" value="${user.userName}" required="required"  placeholder="" class="col-xs-10 col-sm-5" />
+                    <form:input type="text" path="userName" disabled="true" value="${viewmodel.userName}" required="required"  placeholder="" class="col-xs-10 col-sm-5" />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="status">Status</label>
 
                 <div class="col-sm-9">
-                    <select class="col-sm-4" name="status" id="status">
-                        <option value="1" ${user.status==1 ? "selected":""} class="col-xs-10 col-sm-5">Enable</option>
-                        <option value="0" ${user.status == 0 ? "selected":""} class="col-xs-10 col-sm-5">disable</option>
-                    </select>
+                    <form:select class="col-sm-4" path="status">
+                        <form:option value="1"  class="col-xs-10 col-sm-5">Enable</form:option>
+                        <form:option value="0"  class="col-xs-10 col-sm-5">disable</form:option>
+                    </form:select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" >Quyền tài khoản</label>
                 <div class="col-sm-9">
-                   <c:forEach items="${listRole}" var="item">
+                   <c:forEach items="${roles}" var="item">
                        <label class="checkbox-inline">
-                           <input type="checkbox"
-                          ${fn:contains(user.roles,item )? "checked":""}     name="code"  value="${item.code}">${item.name}</label>
+                           <form:checkbox path="listRole"  value="${item.code}"></form:checkbox>
+                               ${item.name}</label>
                    </c:forEach>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-5">
-                    <button type="button" class="btn btn-sm btn-success " id="btnAddUser" style="left:450px;">
+                    <button type="submit" class="btn btn-sm btn-success "  style="left:450px;">
                         Submit
                         <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
                     </button>
                 </div>
             </div>
-        </form>
+        </form:form>
+
     </div><!-- /.col -->
 </div><!-- /.row -->
 </body>

@@ -2,6 +2,7 @@ package com.vnpost.constant;
 
 public class SystemConstant {
     public static final Integer disable = 0;
+    public static final String USER_ROLE="USER";
     public static final Integer enable = 1;
     public static  final String defaultPassword="12345";
     public static  final String FILE_PATH="/template/images/";

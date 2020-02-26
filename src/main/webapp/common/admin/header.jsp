@@ -112,7 +112,7 @@
                         <img class="nav-user-photo" src="/template/admin/assets/avatars/user.jpg" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>Welcome,</small>
-									<%--<%=SecurityUtils.getPrincipal().getFullName()%>--%>
+									<%--<%=SecurityUtils.getPrincipal().getUsername()%>--%>
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>

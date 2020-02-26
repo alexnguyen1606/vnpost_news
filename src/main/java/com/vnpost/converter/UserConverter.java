@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Type;
+import java.util.stream.Collectors;
 
 @Component
 public class UserConverter implements IDTO<UserDTO>,IEntity<UserEntity>{
@@ -18,6 +19,7 @@ public class UserConverter implements IDTO<UserDTO>,IEntity<UserEntity>{
     public UserDTO convertToDTO(Object object) {
         UserEntity entity = (UserEntity) object;
         UserDTO dto = modelMapper.map(entity,UserDTO.class);
+       // dto.getRoles().stream().map(item -> dto.getListRole().add(item.getCode())).collect(Collectors.toList());
         return dto;
     }
 
