@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -44,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         //cho tất cả truy cập
+        http.authorizeRequests().antMatchers("/ckfinder/*").permitAll();
         http.authorizeRequests().antMatchers("/admin").access("hasAuthority('USER') or hasAuthority('ADMIN')");
         http.authorizeRequests().antMatchers("/admin/user").access("hasAuthority('ADMIN')");
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/accessDenied");
@@ -67,7 +69,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //.and().logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true);
         http.authorizeRequests().and().rememberMe().tokenRepository(this.persistentTokenRepository());
-
+    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/images/**","/ckeditor/**","/ckfinder/**","/media/**");
     }
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {

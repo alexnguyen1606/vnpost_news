@@ -7,6 +7,16 @@ import java.util.Date;
 @Getter
 @Setter
 public class BaseDTO {
+    public BaseDTO (){
+
+    }
+
+    public BaseDTO( Integer page, Integer size,Integer totalPages) {
+        this.totalPages = totalPages;
+        this.page = page;
+        this.size = size;
+    }
+
     private Long id;
     private Date createdDate;
 

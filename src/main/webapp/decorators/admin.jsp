@@ -51,6 +51,8 @@
     <%--<%@ include file="/common/admin/footer.jsp"%>--%>
 </div> <!-- main container -->
 <%--<%@include file="/common/admin/footer.jsp"%>--%>
+<script src="<c:url value='/ckfinder/ckfinder.js'/> "></script>
+<script src="<c:url value='/ckeditor/ckeditor.js'/> " ></script>
 <script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>
 <script src="<c:url value='/template/admin/assets/js/ace-extra.min.js'/>"></script>
 <script src="<c:url value='/template/admin/assets/js/jquery-ui.custom.min.js' />"></script>
@@ -72,6 +74,8 @@
 <script src="<c:url value='/template/admin/js/user-list.js'/> "></script>
 <script src="<c:url value='/template/admin/js/upload.js'/> "></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/template/web/paging/jquery.twbsPagination.js"></script>
+<script src="/template/web/paging/jquery.twbsPagination.min.js"></script>
 
 <%--<script src="<c:url value='https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'/> "></script>--%>
 

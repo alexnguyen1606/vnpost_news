@@ -1,5 +1,6 @@
 package com.vnpost.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ public class CategoryEntity extends BaseEntity{
     private String url;
     @Column(name = "name",length = 50,nullable = false,unique = true)
     private String name;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
     private List<NewsEntity> listNews = new ArrayList<>();
 }

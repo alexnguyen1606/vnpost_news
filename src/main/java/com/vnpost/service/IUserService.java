@@ -1,16 +1,19 @@
 package com.vnpost.service;
 
 import com.vnpost.dto.UserDTO;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public interface IUserService {
+    ArrayList<UserDTO> findAll(Pageable pageable);
     ArrayList<UserDTO> findAll();
     UserDTO save(UserDTO userDTO);
     UserDTO update(UserDTO userDTO);
     UserDTO findByUsername(String username);
     List<UserDTO> findAllByStatus(int status);
+    List<UserDTO> findAllByStatus(int status, Pageable pageable);
     List<UserDTO> findByStatusAndRole(int status, long roleId);
     void delete(Long[] ids);
     void enable(Long[] ids);

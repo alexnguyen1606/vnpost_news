@@ -31,9 +31,11 @@
 		<json.version>2.10.0</json.version>
 		<gson.version>2.8.5</gson.version>
 		<spring.title.version>3.0.8</spring.title.version>
+		<quartz.version>2.3.1</quartz.version>
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -141,6 +143,13 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartz.version}</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
@@ -152,13 +161,76 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.1</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/com.ckfinder/CKFinderPlugin-FileEditor -->
+		<!-- https://mvnrepository.com/artifact/com.ckfinder/CKFinder-updateByAlexander -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.3</version>
+		</dependency>
 		<!-- Apache Commons IO -->
 		<!-- http://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.cksource</groupId>
+			<artifactId>ckfinder3</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ckeditor</groupId>
+			<artifactId>ckeditor-java-core</artifactId>
+			<version>3.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.finder</groupId>
+			<artifactId>fileeditor</artifactId>
+			<version>2.6.3</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/CKFinderPlugin-FileEditor-2.6.3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.finder</groupId>
+			<artifactId>imageresize</artifactId>
+			<version>2.6.3</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/CKFinderPlugin-ImageResize-2.6.3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.finder</groupId>
+			<artifactId>watermark</artifactId>
+			<version>2.6.3</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/CKFinderPlugin-Watermark-2.6.3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.finder</groupId>
+			<artifactId>ckfinder</artifactId>
+			<version>2.6.3</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/CKFinder-2.6.3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>2.6.3</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/thumbnailator-0.4.8.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.2.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -41,7 +41,58 @@
     </div><!-- /.page-header -->
 
     <div class="row">
+        <div class="col-sm-12">
+            <div class="widget-box">
+                <div class="widget-header">
+                    <h4 class="widget-title">Tìm kiếm</h4>
+                    <div class="widget-toolbar">
+                        <a href="#" data-action="collapse">
+                            <i class="ace-icon fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
 
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <form:form action="/admin/news" modelAttribute="newsSearch"  method="get" id="formSearchBuilding">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="name">Tên bài viết</label>
+                                    <form:input class="form-control" path="name"  value="${newsSearch.name}" placeholder=""></form:input>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="author">Tác giả</label>
+                                    <form:input class="form-control" path="author"  value="${newsSearch.author}" ></form:input>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label >Chuyên mục</label>
+                                    <form:select  path="cateId" class="form-control">
+                                        <form:option value="">Tất cả</form:option>
+                                        <c:forEach var="item" items="${categories}">
+                                            <form:option value="${item.id}"  >${item.name}</form:option>
+                                        </c:forEach>
+                                    </form:select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Trạng thái</label>
+                                    <form:select cssClass="form-control" path="status">
+                                        <form:option value="1">Active</form:option>
+                                        <form:option value="0">Unactive</form:option>
+                                    </form:select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="">
+                                <button type="submit" id="btnSearchBuilding" class="btn btn-sm btn-success">
+                                    Tìm kiếm
+                                    <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                </button>
+                            </div>
+                        </form:form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-12">
             <div class="pull-right">
                 <a href="/admin/news/create" class="btn btn-primary " data-toggle="tooltip" title="Thêm bài viết"><i class="fa fa-plus"></i></a>
@@ -59,6 +110,7 @@
                 <th>Ngày viết</th>
                 <th>Lượt xem</th>
                 <th>Tác giả</th>
+                <th>Trạng thái</th>
                 <th>Thao tác</th>
                 </thead>
                 <tbody id="bodyBuildingList">
@@ -72,6 +124,7 @@
                                                 dateStyle = "short" timeStyle = "short" pattern="dd-M-yyyy" value = "${item.createdDate}" /></td>
                             <td>${item.count}</td>
                             <td>${item.author}</td>
+                            <td>${item.status==1 ? "ACTIVE":"UNACTIVE" }</td>
                             <td>
                                 <a href="/admin/news/edit/${item.id}" class="btn btn-success"  data-toggle="tooltip"
                                    title="Chỉnh sửa tòa nhà ">
@@ -94,18 +147,27 @@
 </div><!-- /.page-content -->
 
 </div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
+
     $(function () {
         var totalPages = ${model.totalPages};
         var currentPages = ${model.page};
         var size = ${model.size};
+        var status = $('#status').val();
+        var author = $('#author').val();
+        var name = $('#name').val();
+        var categoryId=$('#cateId').val();
         window.pagObj = $('#pagination').twbsPagination({
             totalPages:totalPages,
             startPage:currentPages,
             visiblePages: 10,
             onPageClick: function (event, page) {
                 if (currentPages!=page) {
-                    window.location.href="http://localhost:8080/admin/news?page="+page+"&size="+size;
+                    window.location.href="http://localhost:8080/admin/news?name="+name
+                        +"&author="+author+"&categoryId="+categoryId
+                        +"&status="+status
+                        +"&page="+page+"&size="+size;
                 }
             }
         }).on('page', function (event, page) {

@@ -35,7 +35,7 @@
                             </h2>
                         </div>
                         <div class="col-md-6">
-                            <img src="/template/images/${item.thumbnail}" alt="">
+                            <img src="/images/${item.thumbnail}" alt="">
                         </div>
                         <div class="col-md-6 news-short-content">
                             <label ><fmt:formatDate type = "both"
@@ -57,26 +57,27 @@
     </div>
 
 </div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script >
 
-    <%--var totalPages = ${model.totalPages};--%>
-    <%--var currentPages =${model.page};--%>
-    <%--var size = ${model.size};--%>
-    <%--var id = ${model.id} ;--%>
-    <%--$(function () {--%>
-        <%--window.pagObj = $('#pagination').twbsPagination({--%>
-            <%--totalPages: totalPages,--%>
-            <%--visiblePages: 10,--%>
-            <%--startPage:currentPages,--%>
-            <%--onPageClick: function (event, page) {--%>
-                <%--if (currentPages!=page){--%>
-                    <%--window.location.href="http://localhost:8080/bai-viet/nhom/"+id+"?page="+page+"&size="+size;--%>
-                <%--}--%>
-            <%--}--%>
-        <%--}).on('page', function (event, page) {--%>
-            <%--console.info(page + ' (from event listening)');--%>
-        <%--});--%>
-    <%--});--%>
+    var totalPages = ${model.totalPages};
+    var currentPages =${model.page};
+    var size = ${model.size};
+    var id = ${model.id};
+    $(function () {
+        window.pagObj = $('#pagination').twbsPagination({
+            totalPages: totalPages,
+            visiblePages: 10,
+            startPage:currentPages,
+            onPageClick: function (event, page) {
+                if (currentPages!=page){
+                    window.location.href="http://localhost:8080/bai-viet/nhom/"+id+"?page="+page+"&size="+size;
+                }
+            }
+        }).on('page', function (event, page) {
+            console.info(page + ' (from event listening)');
+        });
+    });
 </script>
 </body>
 </html>

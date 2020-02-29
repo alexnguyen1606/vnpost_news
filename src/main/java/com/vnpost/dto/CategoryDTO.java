@@ -16,6 +16,5 @@ public class CategoryDTO extends BaseDTO {
 
     private List<NewsDTO> listNews = new ArrayList<>();
 
-    private NewsDTO newsLatest;
-    private NewsDTO newsMostViews;
+
 }

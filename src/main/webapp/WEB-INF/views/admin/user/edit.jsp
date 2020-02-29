@@ -52,6 +52,7 @@
 
                 <div class="col-sm-9">
                     <form:input type="text" path="fullName" required="required"  value="${viewmodel.fullName}" placeholder="" class="col-xs-10 col-sm-5" />
+                    <form:errors path="fullName" cssClass="error"></form:errors>
                 </div>
             </div>
             <div class="form-group">
@@ -59,6 +60,7 @@
 
                 <div class="col-sm-9">
                     <form:input type="text" path="userName" disabled="true" value="${viewmodel.userName}" required="required"  placeholder="" class="col-xs-10 col-sm-5" />
+                    <form:errors path="userName" cssClass="error"></form:errors>
                 </div>
             </div>
             <div class="form-group">

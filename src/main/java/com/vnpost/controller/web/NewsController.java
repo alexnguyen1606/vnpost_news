@@ -1,17 +1,27 @@
 package com.vnpost.controller.web;
 
+import com.vnpost.builder.NewsBuilder;
 import com.vnpost.constant.SystemConstant;
+import com.vnpost.dto.BaseDTO;
 import com.vnpost.dto.IndexDTO;
 import com.vnpost.dto.NewsDTO;
 import com.vnpost.service.INewsService;
 import com.vnpost.service.impl.CategoryService;
+import com.vnpost.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller(value = "webNewsController")
 public class NewsController {
@@ -20,9 +30,23 @@ public class NewsController {
     @Autowired
     private INewsService newsService;
     @GetMapping("/tin-tuc/tim-kiem")
-    public ModelAndView search(@RequestParam("search") String search){
+    public ModelAndView search(@RequestParam(value = "key",required = false) String search
+
+    ){
         ModelAndView mav = new ModelAndView("web/news/search");
-        mav.addObject("news",newsService.search(search));
+       // String searchEnglish = StringUtils.convertEnglish(search);
+        NewsBuilder builder = NewsBuilder.builder()
+                .name(search)
+               // .categoryName(search)
+                .author(search)
+                .title(search)
+                .url(StringUtils.convert(search))
+                .categoryUrl(StringUtils.convert(search))
+                .status(SystemConstant.enable)
+                .build();
+        List<NewsDTO> result = newsService.search(builder);
+        mav.addObject("news",result);
+        mav.addObject("key",search);
         return mav;
     }
     @GetMapping("/tin-tuc")
@@ -35,14 +59,13 @@ public class NewsController {
         return mav;
     }
     @GetMapping("/bai-viet/chi-tiet/{id}")
-    public ModelAndView detail(@PathVariable("id") Long idNews){
-        ModelAndView mav = new ModelAndView("web/news/detail");
-        NewsDTO news = newsService.findById(idNews);
-        newsService.countViews(news.getId());
-        mav.addObject("category",categoryService.findAll());
-        mav.addObject("newsItem",news);
-        mav.addObject("news",newsService.findAllByCategoryIdAndStatus(news.getCategory().getId(), SystemConstant.enable));
-        return mav;
+    public String detail(@PathVariable("id") Long idNews, Model model){
+            NewsDTO news = newsService.findById(idNews);
+            newsService.countViews(news.getId());
+            model.addAttribute("category",categoryService.findAll());
+            model.addAttribute("newsItem",news);
+            model.addAttribute("news",newsService.findAllByCategoryIdAndStatus(news.getCategory().getId(), SystemConstant.enable));
+            return "web/news/detail";
     }
 
 }

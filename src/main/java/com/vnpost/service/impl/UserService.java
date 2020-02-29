@@ -10,9 +10,12 @@ import com.vnpost.repository.RoleRepository;
 import com.vnpost.repository.UserRepository;
 import com.vnpost.service.IRoleService;
 import com.vnpost.service.IUserService;
+import com.vnpost.test.PassEncoder;
 import com.vnpost.utils.EncrytedPasswordUtils;
 import com.vnpost.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +27,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService {
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -34,6 +37,12 @@ public class UserService implements IUserService {
     private UserConverter converter;
     @Autowired
     private IRoleService roleService;
+    @Override
+    public ArrayList<UserDTO> findAll(Pageable pageable) {
+        return (ArrayList<UserDTO>) userRepository.findAll(pageable).stream()
+                .map(item-> converter.convertToDTO(item)).collect(Collectors.toList());
+    }
+
     @Override
     public ArrayList<UserDTO> findAll() {
         return (ArrayList<UserDTO>) userRepository.findAll().stream()
@@ -87,6 +96,12 @@ public class UserService implements IUserService {
     @Override
     public List<UserDTO> findAllByStatus(int status) {
         return userRepository.findByStatus(status).stream()
+                .map(item-> converter.convertToDTO(item)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserDTO> findAllByStatus(int status, Pageable pageable) {
+        return userRepository.findByStatus(status,pageable).stream()
                 .map(item-> converter.convertToDTO(item)).collect(Collectors.toList());
     }
 
@@ -165,16 +180,27 @@ public class UserService implements IUserService {
 
     @Override
     public void changePassWord(UserDTO userDTO) {
-        String passwordEncoder = EncrytedPasswordUtils.encrytePassword(userDTO.getRepeatPassword());
+//        String passwordEncoder = EncrytedPasswordUtils.encrytePassword(userDTO.getRepeatPassword());
+//        UserDTO userInDb = findByUsername(SecurityUtils.getPrincipal().getUsername());
+//        if (userInDb.getId()!=null){
+//            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//            if (bCryptPasswordEncoder.matches(passwordEncoder,userInDb.getPassword())){
+//                UserEntity entity = converter.convertToEntity(userInDb);
+//                entity.setPassword(EncrytedPasswordUtils.encrytePassword(userDTO.getPassword()));
+//                entity.setCreatedDate(entity.getCreatedDate());
+//                entity.setCreatedBy(entity.getCreatedBy());
+//                userRepository.save(entity);
+//            }
+//        }
+
+        String passwordEncoder = EncrytedPasswordUtils.encrytePassword(userDTO.getOldPassword());
         UserDTO userInDb = findByUsername(SecurityUtils.getPrincipal().getUsername());
-        if (userInDb.getId()!=null){
-            if (bCryptPasswordEncoder.matches(passwordEncoder,userInDb.getPassword())){
-                UserEntity entity = converter.convertToEntity(userInDb);
-                entity.setPassword(EncrytedPasswordUtils.encrytePassword(userDTO.getPassword()));
-                entity.setCreatedDate(entity.getCreatedDate());
-                entity.setCreatedBy(entity.getCreatedBy());
-                userRepository.save(entity);
-            }
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        if (bCryptPasswordEncoder.matches(passwordEncoder,userInDb.getPassword())){
+            System.out.println("Changed");
+            UserEntity entity = converter.convertToEntity(userInDb);
+            entity.setPassword(EncrytedPasswordUtils.encrytePassword(userDTO.getPassword()));
+            userRepository.save(entity);
         }
 
     }

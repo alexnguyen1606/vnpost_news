@@ -19,7 +19,7 @@
                 </c:forEach>
             </c:if>
         </ul>
-        <div class="hotline-box">
+        <div class="hidden-xs hotline-box">
             <label>Đường dây nóng</label>
             <h2>1900 54 54 81</h2>
         </div>

@@ -9,18 +9,18 @@
         </div>
         <div class="col-sm-6 col-xs-12 col-right">
             <ul class="top-toolbar ">
-                <li class="col-sm-3">
+                <li class="col-sm-3 col-xs-6">
                     <a href="">
-                        <div class="tool-img">
+                        <div class=" tool-img">
                             <img src="/template/images/mess.png" alt="">
                         </div>
-                        <div class="tool-text" >
+                        <div class=" tool-text" >
                             <label >Đánh gía &</label>
                             <span>Khiếu Nại</span>
                         </div>
                     </a>
                 </li>
-                <li class="col-sm-3">
+                <li class="col-sm-3 col-xs-6">
                     <a href="">
                         <div class="tool-img">
                             <img src="/template/images/recruitment.png" alt="">

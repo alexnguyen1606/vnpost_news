@@ -14,6 +14,7 @@ public class NewsDTO extends BaseDTO{
     private Integer status;
 
     private String name;
+    private String content;
 
     private String title;
 
@@ -26,6 +27,8 @@ public class NewsDTO extends BaseDTO{
     private Integer count;
 
     private String author;
+
+    private Long cateId;
 
     private ParagraphDTO paragraph1;
     private ParagraphDTO paragraph2;

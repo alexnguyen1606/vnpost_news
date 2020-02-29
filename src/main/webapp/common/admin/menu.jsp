@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="/common/taglib.jsp"></jsp:include>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="sidebar" class="sidebar responsive">
     <script type="text/javascript">
         try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
@@ -46,7 +47,7 @@
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-desktop"></i>
+                <i class="menu-icon fa fa-newspaper-o"></i>
                 <span class="menu-text">
 								Bài viết
 							</span>
@@ -64,16 +65,16 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="/admin/news/disable" >
+                    <a href="/admin/news/create" >
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách bài viết disable
+                        Thêm bài viết
                     </a>
                 </li>
             </ul>
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-users"></i>
+                <i class="menu-icon fa  fa-list-alt"></i>
                 <span class="menu-text">
 								Chuyên mục
 							</span>
@@ -90,14 +91,19 @@
                         Danh sách chuyên mục
                     </a>
                 </li>
-
+                <li class="">
+                    <a href="/admin/category/create" >
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Thêm chuyên mục
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-user"></i>
+                <i class="menu-icon fa  fa-list-alt"></i>
                 <span class="menu-text">
-								Quản lý tài khoản
+                    Bưu chính chuyển phát
 							</span>
 
                 <b class="arrow fa fa-angle-down"></b>
@@ -107,14 +113,94 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="/admin/user" >
+                    <a href="/admin/postage-delivery" >
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách tài khoản
+                        Danh sách
                     </a>
                 </li>
-
+                <li class="">
+                    <a href="/admin/postage-delivery/service" >
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Dịch vụ
+                    </a>
+                </li>
             </ul>
         </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa  fa-list-alt"></i>
+                <span class="menu-text">
+								Tài chính bưu chính
+							</span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="/admin/category" >
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách dịch vụ
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa  fa-list-alt"></i>
+                <span class="menu-text">
+								Phân phối truyền thông
+							</span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+                <li class="">
+                    <a href="/admin/category" >
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Danh sách dịch vụ
+                    </a>
+                </li>
+                <li class="">
+                    <a href="/admin/category/create" >
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Thêm chuyên mục
+                    </a>
+                </li>
+            </ul>
+        </li>
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-users"></i>
+                    <span class="menu-text">
+								Quản lý tài khoản
+							</span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="">
+                        <a href="/admin/user" >
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách tài khoản
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/admin/user/create" >
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Thêm tài khoản
+                        </a>
+                    </li>
+                </ul>
+            </li>
     </ul><!-- /.nav-list -->
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

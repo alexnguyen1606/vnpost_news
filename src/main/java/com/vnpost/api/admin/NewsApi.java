@@ -29,15 +29,15 @@ public class NewsApi {
         newsService.enableAll(newsDTO.getListId());
         return newsDTO;
     }
-    @GetMapping
-    public List<String> search(){
-        List<NewsDTO> listNews = newsService.findAllByStatus(SystemConstant.enable);
-        List<String> listString = new ArrayList<>();
-        for (NewsDTO newsDTO : listNews){
-            listString.add(newsDTO.getName());
-        }
-        return listString;
-    }
+//    @GetMapping
+//    public List<String> search(){
+//        List<NewsDTO> listNews = newsService.findAllByStatus(SystemConstant.enable);
+//        List<String> listString = new ArrayList<>();
+//        for (NewsDTO newsDTO : listNews){
+//            listString.add(newsDTO.getName());
+//        }
+//        return listString;
+//    }
     @PostMapping
     public NewsDTO save(@RequestBody NewsDTO newsDTO){
         return newsService.save(newsDTO);

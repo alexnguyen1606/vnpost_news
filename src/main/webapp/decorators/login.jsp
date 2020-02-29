@@ -15,6 +15,7 @@
     <title></title>
     <link rel="shortcut icon" href="/template/images/vnpost-logo-thumbnail.png" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/custom.css' />">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/news_index.css' />">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

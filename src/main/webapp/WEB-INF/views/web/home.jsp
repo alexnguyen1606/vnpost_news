@@ -210,7 +210,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="thumbnail" style="background-color: #eee;border: none;">
-                    <a href="/w3images/nature.jpg" target="_blank">
+                    <a href="/dich-vu/buu-chinh-chuyen-phat" target="_blank">
                         <img src="/template/images/BCCP-quoc-te.png" class="img-circle" alt="Nature" style="width:300px;height: 250px;">
                         <div class="caption">
                             <p>Bưu Chính Chuyển Phát</p>
@@ -225,10 +225,10 @@
             </div>
             <div class="col-md-4">
                 <div class="thumbnail" style="background-color: #eee;border: none;">
-                    <a href="/w3images/nature.jpg" target="_blank">
+                    <a href="/dich-vu/nhom/tai-chinh-buu-chinh" target="_blank">
                         <img src="/template/images/ImageCaching23.jpg" class="img-circle" alt="Nature" style="width:300px;height: 250px;">
                         <div class="caption">
-                            <p>Bưu Chính Chuyển Phát</p>
+                            <p>Tài Chính Bưu Chính</p>
                         </div>
                     </a>
                     <hr>
@@ -240,10 +240,10 @@
             </div>
             <div class="col-md-4">
                 <div class="thumbnail" style="background-color: #eee;border: none;">
-                    <a href="/w3images/nature.jpg" target="_blank">
+                    <a href="/dich-vu/nhom/phan-phoi-truyen-thong" target="_blank">
                         <img src="/template/images/ImageCaching (1  2).jpg" class="img-circle" alt="Nature" style="width:300px;height: 250px;">
                         <div class="caption">
-                            <p>Bưu Chính Chuyển Phát</p>
+                            <p>Phân phối truyền thông</p>
                         </div>
                     </a>
                     <hr>
@@ -267,9 +267,9 @@
                         <h4>Để người dân hài lòng với dịch vụ công quốc gia - Phóng sự truyền hình Nhân Dân</h4>
                     </div>
                     <div class="col-md-6 home-right">
-                        <h2 class="text-left">MUA SẮM TRỰC TUYẾN</h2>
-                        <p class="text-left">Hiện tại chúng tôi có những gian hàng mua sắm online với đầy đủ những sản phẩm tiện ích, đa dạng. Hy vọng sẽ đem đến cho quý khách hàng những trải nghiệm mua sắm mới mẻ nhất. Hãy đến với hệ thống mua sắm trực tuyến của chúng tôi để tìm cho mình những sản phẩm thiết thực nhất.</p>
-                        <div class="home-right-down">
+                        <h2 class="col-md-6 col-xs-12 text-left">MUA SẮM TRỰC TUYẾN</h2>
+                        <p class=" text-left">Hiện tại chúng tôi có những gian hàng mua sắm online với đầy đủ những sản phẩm tiện ích, đa dạng. Hy vọng sẽ đem đến cho quý khách hàng những trải nghiệm mua sắm mới mẻ nhất. Hãy đến với hệ thống mua sắm trực tuyến của chúng tôi để tìm cho mình những sản phẩm thiết thực nhất.</p>
+                        <div class="col-xs-12 home-right-down">
                             <div class="home-right-down-item col-sm-4">
                                 <a href="">
                                     <img src="/template/images/portmart.jpg" alt="">

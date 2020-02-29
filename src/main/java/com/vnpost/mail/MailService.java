@@ -20,11 +20,12 @@ public class MailService  {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
             mimeMessageHelper.setTo(subcribDTO.getEmail());
+
             mimeMessageHelper.setSubject("[VietNam POST News]");
             StringBuilder content =new StringBuilder("<h2>Bài viết mới nhất</h2><br>");
             content.append("<a");
             content.append(" href='");
-            content.append("http://localhost:8080/bai-viet/chi-tiet/id/"+newsDTO.getId()+"/key/"+newsDTO.getUrl());
+            content.append("http://localhost:8080/bai-viet/chi-tiet/"+newsDTO.getId());
             content.append("' >");
             content.append(newsDTO.getName());
             content.append("</a>");

@@ -31,17 +31,19 @@ ul li a{
 }
 .item-grid{
     margin-bottom: 50px;
+    height: 350px;
 }
 .item-grid h2{
     background-color: rgb(255,250,213);
     margin-top: 0px;
     text-transform: uppercase;
-    font-size: 19px;
+    font-size: 15px;
     text-align: left;
     padding: 15px 20px;
     color: #f58220;
     font-weight: bold;
 }
+
 .item-grid p {
     padding: 10px 20px 10px 20px;
     display: block;

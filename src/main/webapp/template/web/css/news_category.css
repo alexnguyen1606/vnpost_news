@@ -28,6 +28,14 @@ p.limit-text{
     text-overflow: ellipsis;
     display:block;
 }
+p.limit-text-2{
+    width: 360px;
+    height:100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display:block;
+}
 .col-md-6.news-item {
     padding-bottom: 0px;
 }

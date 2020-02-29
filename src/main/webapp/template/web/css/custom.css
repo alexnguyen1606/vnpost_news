@@ -15,7 +15,50 @@ body{
 
 }
 
+.tracking-block{
+    position: absolute;
+    width: 240px;
+    top: 0px;
+    z-index: 99;
+    top: 0px;
+    padding: 0;
+}
+.tracking-block label{
+    display: block;
+    color: #FFF;
+    font-size: 15px;
+    font-family: "Roboto-Medium";
+    padding: 11px 15px 11px 0px;
+}
+.tracking-block .carpet{
+    float: right;
+    margin-top: 5px;
+    float: right;
+    margin-top: 8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid #FFF;
+}
+.tracking-item{
+    margin: 0 10px !important;
+}
+.quick-tool-menu li.first-item a {
+    border-bottom: none;
+}
 
+.tracking-item {
+    margin: 0 10px !important;
+}
+
+.quick-tool-menu .tracking-item .btn-primary {
+    padding: 9px 10px 10px 10px;
+}
+
+.quick-tool-menu{
+
+}
 .col-right ul li a {
     text-decoration: none;
     color: black;
@@ -86,8 +129,15 @@ input.search-form-index{
 
     color: black;
 }
+.ul-main-menu{
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-around;
+}
+
 .main-menu-wapper{
-    background-color: rgb(252,183,30);
+    /*background-color: rgb(252,183,30);*/
     height: 50px;
     display: block;
 }

@@ -14,6 +14,7 @@
 <html>
 <head>
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/template/images/vnpost-logo-thumbnail.png" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/custom.css' />">
     <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/news_index.css'/>">
@@ -22,8 +23,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/postagedelivery.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/deliveryservice.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/deliveryservice-detail.css' />">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/template/web/css/search.css' />">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -32,8 +33,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700&display=swap" rel="stylesheet">
-    <script src="/template/web/paging/jquery.twbsPagination.js"></script>
-    <script src="/template/web/paging/jquery.twbsPagination.min.js"></script>
+    <%--<script src="/template/web/paging/jquery.twbsPagination.js"></script>--%>
+    <%--<script src="/template/web/paging/jquery.twbsPagination.min.js"></script>--%>
 </head>
 <body>
 <%@include file="/common/web/pre-header.jsp"%>
@@ -44,5 +45,6 @@
 <%@include file="/common/web/pre-footer.jsp"%>
 <%@include file="/common/web/footer.jsp"%>
 <script src="<c:url value='/template/web/js/subcrib-edit.js'/> "></script>
+<script src="<c:url value='/template/web/js/search.js'/> "></script>
 </body>
 </html>

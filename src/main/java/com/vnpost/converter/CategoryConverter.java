@@ -8,19 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CategoryConverter implements IDTO<CategoryDTO>,IEntity<CategoryEntity>{
+public class CategoryConverter {
     @Autowired
     private ModelMapper modelMapper;
-    @Override
-    public CategoryDTO convertToDTO(Object object) {
-        CategoryEntity entity = (CategoryEntity) object;
+    public CategoryDTO convertToDTO(CategoryEntity entity) {
         CategoryDTO dto = modelMapper.map(entity, CategoryDTO.class);
         return dto;
     }
 
-    @Override
-    public CategoryEntity convertToEntity(Object object) {
-        CategoryDTO dto = (CategoryDTO) object;
+
+    public CategoryEntity convertToEntity(CategoryDTO dto) {
         CategoryEntity entity = modelMapper.map(dto, CategoryEntity.class);
         entity.setUrl(StringUtils.convert(dto.getName()));
         return entity;

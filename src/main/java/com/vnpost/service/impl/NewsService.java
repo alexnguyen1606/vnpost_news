@@ -1,5 +1,6 @@
 package com.vnpost.service.impl;
 
+import com.vnpost.builder.NewsBuilder;
 import com.vnpost.constant.SystemConstant;
 import com.vnpost.converter.NewsConverter;
 import com.vnpost.converter.ParagraphConverter;
@@ -15,6 +16,7 @@ import com.vnpost.service.INewsService;
 import com.vnpost.service.IParagraphService;
 import com.vnpost.service.ISubcribService;
 import com.vnpost.sort.NewsSort;
+import com.vnpost.thread.SendMailThread;
 import com.vnpost.utils.FileUtils;
 import com.vnpost.utils.UploadFileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +25,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -47,6 +50,12 @@ public class NewsService implements INewsService {
     @Override
     public List<NewsDTO> findAll(Pageable pageable) {
         return newsRepository.findAll(pageable).getContent()
+                .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NewsDTO> findAll() {
+        return newsRepository.findAll()
                 .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
     }
 
@@ -95,10 +104,9 @@ public class NewsService implements INewsService {
 
                 newsEntity.setCount(0);
                 Long newsId =newsRepository.save(newsEntity).getId();
-                paragraphService.saveAll(newsDTO.getListParagraph(),newsId);
                 NewsDTO result = findById(newsId);
                 for (SubcribDTO subcribDTO:subcribService.findAll()){
-                    mailService.sendNewsSubrib(result,subcribDTO);
+                    Thread threadSendMail = new SendMailThread(result,subcribDTO,mailService);
                 }
                 return result;
             }catch (Exception e){
@@ -121,7 +129,6 @@ public class NewsService implements INewsService {
                     newsDTO.setThumbnail(newsEntityInDb.getThumbnail());
                 }
                 NewsEntity newsEntity = converter.convertToEntity(newsDTO);
-                paragraphService.updateAll(newsDTO.getListParagraph());
                 newsEntity.setCount(newsEntityInDb.getCount());
                 newsEntity.setCreatedBy(newsEntityInDb.getCreatedBy());
                 newsEntity.setCreatedDate(newsEntityInDb.getCreatedDate());
@@ -135,10 +142,12 @@ public class NewsService implements INewsService {
 
     @Override
     public NewsDTO findById(Long id) {
-        if(exitsById(id)){
             return converter.convertToDTO(newsRepository.findById(id).get());
-        }
-        return new NewsDTO();
+    }
+
+    @Override
+    public NewsDTO findByIdAndStatus(Long id, Integer status) {
+        return converter.convertToDTO(newsRepository.findByIdAndStatus(id,status));
     }
 
 
@@ -253,9 +262,63 @@ public class NewsService implements INewsService {
     }
 
     @Override
-    public List<NewsDTO> search(String search) {
-        return newsRepository.findByNameLike(search)
-                .stream().map(item -> converter.convertToDTO((NewsEntity) item)).collect(Collectors.toList());
+    public List<NewsDTO> search(NewsBuilder builder) {
+        Map<String,Object> properties = convertToMapProperties(builder);
+        List<NewsDTO> resultList =newsRepository.findAll(properties,builder)
+                .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+        HashMap<Long,NewsDTO> resultHash = new HashMap<>();
+        for(NewsDTO item : resultList){
+            resultHash.put(item.getId(),item);
+        }
+        return new ArrayList<>(resultHash.values());
     }
 
+    @Override
+    public List<NewsDTO> search(NewsBuilder builder, Pageable pageable) {
+        Map<String,Object> properties = convertToMapProperties(builder);
+        return newsRepository.findAll(properties,builder,pageable)
+                .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NewsDTO> searchByAdmin(NewsDTO newsDTO,Pageable pageable) {
+        NewsBuilder builder = NewsBuilder.builder()
+                .author(newsDTO.getAuthor())
+                .name(newsDTO.getName())
+                .categoryId(newsDTO.getCateId())
+                .status(newsDTO.getStatus())
+                .build();
+        Map<String,Object> properties = convertToMapProperties(builder);
+        List<NewsDTO> resultList =newsRepository.findAll(properties,builder,pageable)
+                .stream().map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+        HashMap<Long,NewsDTO> resultHash = new HashMap<>();
+        for(NewsDTO item : resultList){
+            resultHash.put(item.getId(),item);
+        }
+        return new ArrayList<>(resultHash.values());
+    }
+
+    private Map<String,Object> convertToMapProperties(NewsBuilder fieldSearch) {
+        Map<String, Object> properties = new HashMap<>();
+        try {
+            Field[] fields = NewsBuilder.class.getDeclaredFields();
+            for (Field field : fields) {
+                    field.setAccessible(true);
+                    if (!field.getName().equals("categoryId") && !field.getName().equals("categoryName")
+                            && !field.getName().equals("categoryUrl") ){
+                        if (field.getName().equals("status")){
+                            if (field.get(fieldSearch)!=null){
+                                properties.put(field.getName().toLowerCase(),field.get(fieldSearch));
+                            }
+                        }else if (field.get(fieldSearch)!=null && StringUtils.isNotEmpty((CharSequence) field.get(fieldSearch))){
+                            properties.put(field.getName().toLowerCase(), field.get(fieldSearch));
+                        }
+                    }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return properties;
+    }
 }

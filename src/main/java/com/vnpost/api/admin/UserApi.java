@@ -5,17 +5,19 @@ import com.vnpost.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController(value = "apiUser")
 @RequestMapping("/api/user")
 public class UserApi {
     @Autowired
     private UserService userService;
     @PostMapping
-    public UserDTO save(@RequestBody UserDTO userDTO){
+    public UserDTO save(@Valid @RequestBody UserDTO userDTO){
         return userService.save(userDTO);
     }
     @PutMapping
-    public UserDTO update(@RequestBody UserDTO userDTO){
+    public UserDTO update(@Valid @RequestBody UserDTO userDTO){
         return userService.update(userDTO);
     }
     @DeleteMapping

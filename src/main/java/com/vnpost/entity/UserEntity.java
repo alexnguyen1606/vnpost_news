@@ -2,6 +2,8 @@ package com.vnpost.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vnpost.annotations.Username;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +14,7 @@ import java.util.List;
 @Table(name ="users" )
 @Entity
 public class UserEntity extends BaseEntity {
+    @Username
     @NotNull
     @NotBlank
     @Column(name = "username",length = 255,nullable = false,unique = true)
@@ -27,10 +30,11 @@ public class UserEntity extends BaseEntity {
     @Column(name = "fullname")
     private String fullName;
 
-    @Column
+    @Column(name = "status")
     private Integer status;
-
-
+    @Column(name = "avatar")
+    private String avatar;
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"),
             inverseJoinColumns = @JoinColumn(name = "roleid"))

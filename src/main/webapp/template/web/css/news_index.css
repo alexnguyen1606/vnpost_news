@@ -97,14 +97,23 @@ input.search-form-index{
     color: black;
 }
 .main-menu-wapper{
-    background-color: rgb(252,183,30);
+    /*background-color: rgb(252,183,30);*/
     height: 50px;
     display: block;
 }
 .main-menu ul li a:hover{
     background-color: rgb(34,53,112);
     color: white;
-
+}
+.nav{
+    background-color:rgb(252,183,30);
+}
+.nav > li > a {
+   margin-top: 0px;
+    margin-bottom: -10px;
+}
+.li-item:hover{
+    background-color: rgb(34,53,112);
 }
 .main-menu.navbar {
     background-color: rgb(252,183,30);
@@ -119,8 +128,9 @@ input.search-form-index{
     background-color: rgb(34,53,112);
 }
 
-.main-menu.nav li:hover{
+.nav li .li-item:hover{
     background-color: rgb(34,53,112);
+    color: white;
 }
 .dropdown-menu{
     background-color: white;

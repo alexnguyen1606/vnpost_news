@@ -22,6 +22,8 @@ public class NewsEntity extends BaseEntity{
 
     @Column(name = "title",columnDefinition = "TEXT")
     private String title;
+    @Column(name = "content",columnDefinition = "TEXT")
+    private String content;
 
     @Column(name = "thumbnail")
     private String thumbnail;
@@ -34,8 +36,8 @@ public class NewsEntity extends BaseEntity{
 
     @Column(name = "author")
     private String author;
-
-    @OneToMany(mappedBy = "news",fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    @JsonIgnore
+    @OneToMany(mappedBy = "news",fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     private List<ParagraphEntity> listParagraph = new ArrayList<>();
 
     @ManyToOne

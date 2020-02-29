@@ -9,6 +9,7 @@ import com.vnpost.repository.CategoryRepository;
 import com.vnpost.service.ICategoryService;
 import com.vnpost.service.INewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +27,12 @@ public class CategoryService implements ICategoryService {
     @Override
     public List<CategoryDTO> findAll() {
         return categoryRepository.findAll().stream()
+                .map(item-> categoryConverter.convertToDTO(item)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CategoryDTO> findAll(Pageable pageable) {
+        return categoryRepository.findAll(pageable).stream()
                 .map(item-> categoryConverter.convertToDTO(item)).collect(Collectors.toList());
     }
 

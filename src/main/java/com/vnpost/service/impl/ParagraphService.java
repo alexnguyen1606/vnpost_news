@@ -24,11 +24,7 @@ public class ParagraphService implements IParagraphService {
     private ParagraphConverter converter;
     @Autowired
     private INewsService newsService;
-    @Override
-    public List<ParagraphDTO> findByNewsId(Long newsId) {
-        return paragraphRepository.findByNewsId(newsId).stream()
-                .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
-    }
+
     @Transactional
     @Override
     public ParagraphDTO save(ParagraphDTO paragraphDTO,Long newsId) {
@@ -51,30 +47,6 @@ public class ParagraphService implements IParagraphService {
             return converter.convertToDTO(paragraphRepository.save(paragraphEntity));
         }
         return new ParagraphDTO();
-    }
-
-    @Override
-    public void saveAll(List<ParagraphDTO> paragraphs,Long newsId) {
-        for(ParagraphDTO paragraph : paragraphs){
-            String imagePath=fileUtils.SaveFile(paragraph.getMultipartFile());
-            if (!imagePath.equals("")){
-                paragraph.setImage(imagePath);
-            }
-            save(paragraph,newsId);
-        }
-    }
-
-    @Override
-    public void updateAll(List<ParagraphDTO> paragraphList) {
-        for (ParagraphDTO paragraph : paragraphList){
-            String imagePath = fileUtils.SaveFile(paragraph.getMultipartFile());
-            if (!imagePath.equals("")){
-                paragraph.setImage(imagePath);
-            }else {
-                paragraph.setImage(findById(paragraph.getId()).getImage());
-            }
-            update(paragraph);
-        }
     }
 
     @Override

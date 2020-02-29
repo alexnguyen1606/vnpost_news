@@ -19,7 +19,7 @@
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="/admin" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
                     VietNam POST
@@ -112,7 +112,7 @@
                         <img class="nav-user-photo" src="/template/admin/assets/avatars/user.jpg" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>Welcome,</small>
-									<%--<%=SecurityUtils.getPrincipal().getUsername()%>--%>
+									<%--<sec:authentication property="principal.username">--%>
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>

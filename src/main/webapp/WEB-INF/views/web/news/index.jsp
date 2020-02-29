@@ -19,7 +19,7 @@
         </div>
         <div class=" col-md-9  news-index-col">
             <div class="container-fluid">
-                <div class="col-sm-12 header-category">
+                <div class="col-sm-12 hidden-xs header-category">
                     <ul class="list-unstyled list-inline">
                         <c:forEach items="${category}" var="item">
                             <li class=""><a href="/bai-viet/nhom/${item.id}?page=1&size=8">${item.name}</a></li>
@@ -34,7 +34,7 @@
                         <h2><a href="/bai-viet/chi-tiet/${newest.id}">
                             ${newest.name}</a></h2>
                         <div class="  col-img">
-                            <img src="<c:url value='/template/images/${newest.thumbnail}'/>" alt="">
+                            <img src="<c:url value='/images/${newest.thumbnail}'/>" alt="">
                         </div>
                         <div class=" short-content limit-text">
                             <p>${newest.title}</p>
@@ -49,7 +49,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3 most-view-news">
-                    <img src="<c:url value='/template/images/${mostViews.thumbnail}'/>" alt="">
+                    <img src="<c:url value='/images/${mostViews.thumbnail}'/>" alt="">
                     <h2>
                         <a href="/bai-viet/chi-tiet/${mostViews.id}">
                             ${mostViews.name}</a>

@@ -46,10 +46,10 @@
     <div class="col-sm-12">
         <form:form method="POST" action="/admin/user/changePassword" modelAttribute="viewmodel" class="form-horizontal" role="form" id="formEdit">
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="repeatPassword">Nhập lại mật khẩu</label>
+                <label class="col-sm-3 control-label no-padding-right" for="oldPassword">Nhập lại mật khẩu hiện tại</label>
 
                 <div class="col-sm-9">
-                    <form:input type="password" path="repeatPassword" required="required"   class="col-xs-10 col-sm-5" ></form:input>
+                    <form:input type="password" path="oldPassword" required="required"   class="col-xs-10 col-sm-5" ></form:input>
                 </div>
             </div>
             <div class="form-group">
@@ -60,8 +60,15 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="confirmPassword">Nhập lại mật khẩu</label>
+                <div class="col-sm-9">
+                    <form:input type="password" path="confirmPassword" onchange=""  required="required" class="col-xs-10 col-sm-5" ></form:input>
+                </div>
+                <span id="error" style="display:none">Mật khẩu không khớp</span>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-5">
-                    <button type="submit" class="btn btn-sm btn-success " style="left:450px;">
+                    <button type="submit" id="btnAdd"  class="btn btn-sm btn-success " style="left:450px;">
                         Submit
                         <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
                     </button>
@@ -70,5 +77,17 @@
         </form:form>
     </div><!-- /.col -->
 </div><!-- /.row -->
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+        function confirmPass() {
+            var pass = $("#password").val();
+                if(pass==$('#confirmPassword')) {
+                    $("#error").show();
+                    return;
+                }else {
+                    document.getElementById('btnAdd').disabled = false;
+                }
+        };
+</script>
 </body>
 </html>

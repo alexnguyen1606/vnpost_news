@@ -1,10 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="/common/taglib.jsp"></jsp:include>
 <div class="row main-menu-wapper">
-    <div class="container main-menu">
         <%--<div class="tracking-block">--%>
-            <%--<label class="quick-access-label collapsed  " role="button" data-togle="collapse"--%>
-                   <%--href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">--%>
+            <%--<label class="quick-access-label collapsed  " data-togle="collapse"--%>
+                 <%--data-target="#collapseExample"   aria-expanded="true" aria-controls="collapseExample">--%>
                 <%--<span class="quick-access-caption">Tra cứu - Định vị</span>--%>
                 <%--<span class="carpet"></span>--%>
             <%--</label>--%>
@@ -19,24 +18,19 @@
 
                         <%--</div>--%>
                     <%--</li>--%>
-                    <%--<li></li>--%>
+                    <%--<li>--%>
+
+                    <%--</li>--%>
                 <%--</ul>--%>
             <%--</div>--%>
         <%--</div>--%>
-
-        <nav class="navbar ">
-            <div class="container-fluid ">
-                <ul class="nav navbar-nav ">
-                    <li class=""><a href="#">Bưu Chính Chuyển phát</a></li>
-                    <li><a href="#">Tài chính bưu chính</a></li>
-                    <li><a href="#">Phân phối-Truyền thông</a></li>
-                    <li><a href="/tin-tuc">Tin tức</a></li>
-                    <li><a href="">EMAIL</a></li>
-                    <%--<c:forEach items="${menu-wapper}" var="item">--%>
-                        <%--<li><a href="${item.key}">${item.value}</a></li>--%>
-                    <%--</c:forEach>--%>
-                </ul>
-            </div>
-        </nav>
-    </div>
+        <div class=" container-fluid ">
+            <ul class="nav navbar-nav ul-main-menu ">
+                <li ><a href="/dich-vu/buu-chinh-chuyen-phat" class="li-item">Bưu Chính Chuyển phát</a></li>
+                <li ><a href="/dich-vu/nhom/tai-chinh-buu-chinh" class="li-item">Tài chính bưu chính</a></li>
+                <li ><a href="/dich-vu/nhom/phan-phoi-truyen-thong" class="li-item">Phân phối-Truyền thông</a></li>
+                <li ><a href="/tin-tuc" class="li-item">Tin tức</a></li>
+                <li ><a href="" class="li-item">EMAIL</a></li>
+            </ul>
+        </div>
 </div>

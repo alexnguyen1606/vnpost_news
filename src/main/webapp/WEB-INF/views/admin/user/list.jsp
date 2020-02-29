@@ -41,7 +41,6 @@
     </div><!-- /.page-header -->
 
     <div class="row">
-
         <div class="col-sm-12">
             <div class="pull-right">
                 <a href="/admin/user/create" class="btn btn-primary " data-toggle="tooltip" title="Thêm tài khoản"><i class="fa fa-plus"></i></a>
@@ -84,8 +83,34 @@
                 </c:if>
                 </tbody>
             </table>
+            <div class="col-sm-12 col-xs-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination" id="pagination"></ul>
+                </nav>
+            </div>
         </div>
     </div><!-- /.row -->
 </div><!-- /.page-content -->
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        var totalPages = ${model.totalPages};
+        var currentPages = ${model.page};
+        var size = ${model.size};
+        window.pagObj = $('#pagination').twbsPagination({
+            totalPages:totalPages,
+            startPage:currentPages,
+            visiblePages: 10,
+            onPageClick: function (event, page) {
+                if (currentPages!=page) {
+                    window.location.href="http://localhost:8080/admin/user?page="+page+"&size="+size;
+                }
+            }
+        }).on('page', function (event, page) {
+            console.info(page + ' (from event listening)');
+        });
+    });
+</script>
 </body>
 </html>

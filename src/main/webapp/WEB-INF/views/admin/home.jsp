@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-Xin chao
+
 </body>
 </html>

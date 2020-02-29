@@ -28,17 +28,9 @@
                     <p>
                        ${newsItem.title}
                     </p>
-                    <c:if test="${fn:length(newsItem.listParagraph)>0}">
-                        <c:forEach items="${newsItem.listParagraph}" var="paragraph">
-                            <div class="img-content">
-                                <div style="width: 500px">
-                                    <img src="<c:url value='/template/images/${paragraph.image}'/>"  alt="">
-                                </div>
-                                <p class="img-title">${paragraph.titleImage}</p>
-                                <p>${paragraph.content}</p>
-                            </div>
-                        </c:forEach>
-                    </c:if>
+                    <div class="col-sm-12 col-md-12" id="content">
+                        ${newsItem.content}
+                    </div>
                     <div class="col-sm-12">
                         <label class="view">
                             <i class="fa fa-eye"></i>Lượt xem: ${newsItem.count}

@@ -1,6 +1,8 @@
 package com.vnpost.dto;
 
 import com.vnpost.annotations.Name;
+import com.vnpost.annotations.Password;
+import com.vnpost.annotations.Username;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,16 +12,16 @@ import java.util.List;
 @Getter
 @Setter
 public class UserDTO extends BaseDTO {
-
+    @Username
     private String userName;
 
-
+    @Password
     private String password;
 
     private String email;
 
-    private String repeatPassword;
-
+    private String confirmPassword;
+    private String oldPassword;
 
     private String fullName;
 

@@ -2,7 +2,7 @@
 <jsp:include page="/common/taglib.jsp"></jsp:include>
 <div class="row pre-footer col-xs-hidden">
     <div class="container">
-        <div class="col-md-4 col-sm-4 col-xs-12 pre-footer-col">
+        <div class="col-md-4 col-sm-4 hidden-xs pre-footer-col">
             <h2 class="ellipsisTitle">Bưu Chính Chuyển phát</h2>
             <ul>
                 <li><a href="" class="ellipsisTitle">
@@ -15,7 +15,7 @@
 
             </ul>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-12 pre-footer-col">
+        <div class="col-md-4 col-sm-4 hidden-xs pre-footer-col">
             <h2 class="ellipsisTitle">Tài Chính Bưu Chính</h2>
             <ul>
                 <li><a href="" class="ellipsisTitle" >
@@ -35,7 +35,7 @@
                 </a></li>
             </ul>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-12 pre-footer-col ">
+        <div class="col-md-4 col-sm-4 hidden-xs pre-footer-col ">
             <h2 class="ellipsisTitle">Phân phối - Truyền thông</h2>
             <ul class="" >
                 <li><a href="" class="ellipsisTitle">
