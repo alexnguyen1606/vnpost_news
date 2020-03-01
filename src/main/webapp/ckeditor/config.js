@@ -7,15 +7,17 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-    config.filebrowserImageBrowseUrl = 'http://localhost:8080/ckfinder/ckfinder.html?type=Images';
+    config.filebrowserImageBrowseUrl = '/ckfinder/ckfinder.html?type=Images';
 
-    config.filebrowserFlashBrowseUrl = 'http://localhost:8080/ckfinder/ckfinder.html?type=Flash';
+    config.filebrowserFlashBrowseUrl = '/ckfinder/ckfinder.html?type=Flash';
 
 
-    config.filebrowserUploadUrl = 'http://localhost:8080/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
+    config.filebrowserUploadUrl = '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files';
 
-    config.filebrowserImageUploadUrl = 'http://localhost:8080/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
+    config.filebrowserImageUploadUrl = '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images';
 
-    config.filebrowserFlashUploadUrl = 'http://localhost:8080/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
+    config.filebrowserFlashUploadUrl = '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash';
+    config.extraPlugins='cloudservices';
+
 
 };

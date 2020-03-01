@@ -106,7 +106,7 @@ public class NewsService implements INewsService {
                 Long newsId =newsRepository.save(newsEntity).getId();
                 NewsDTO result = findById(newsId);
                 for (SubcribDTO subcribDTO:subcribService.findAll()){
-                    Thread threadSendMail = new SendMailThread(result,subcribDTO,mailService);
+                    new SendMailThread(newsDTO,subcribDTO,mailService);
                 }
                 return result;
             }catch (Exception e){

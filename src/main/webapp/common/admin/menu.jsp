@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="/common/taglib.jsp"></jsp:include>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<div id="sidebar" class="sidebar responsive">
+<div id="sidebar" class="sidebar responsive" style="width: 215px">
     <script type="text/javascript">
         try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
     </script>

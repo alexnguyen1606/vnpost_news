@@ -108,7 +108,11 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
     $(document).ready(function () {
-       var editor =  CKEDITOR.replace('content');
+       var editor =  CKEDITOR.replace('content',{
+           extraPlugins: 'easyimage',
+           cloudServices_tokenUrl: 'https://localhost:8080/cs-token-endpoint',
+           cloudServices_uploadUrl: 'https://localhost:8080/easyimage/upload/'
+       });
        CKFinder.setupCKEditor(editor)
     })
 </script>
