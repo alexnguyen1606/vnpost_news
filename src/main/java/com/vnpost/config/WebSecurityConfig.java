@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         //cho tất cả truy cập
-        http.authorizeRequests().antMatchers("/ckfinder/*").permitAll();
+        //http.authorizeRequests().antMatchers("/ckfinder/*").permitAll();
         http.authorizeRequests().antMatchers("/admin").access("hasAuthority('USER') or hasAuthority('ADMIN')");
         http.authorizeRequests().antMatchers("/admin/user").access("hasAuthority('ADMIN')");
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/accessDenied");

@@ -57,7 +57,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
@@ -140,6 +139,11 @@
 			<version>${jstl.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
@@ -176,11 +180,11 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-		<dependency>
-			<groupId>com.cksource</groupId>
-			<artifactId>ckfinder3</artifactId>
-			<version>3.5.1</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.cksource</groupId>-->
+			<!--<artifactId>ckfinder3</artifactId>-->
+			<!--<version>3.5.1</version>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>com.ckeditor</groupId>
 			<artifactId>ckeditor-java-core</artifactId>
@@ -189,43 +193,37 @@
 		<dependency>
 			<groupId>com.finder</groupId>
 			<artifactId>fileeditor</artifactId>
-			<version>2.6.3</version>
+			<version>2.6.2.1</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/CKFinderPlugin-FileEditor-2.6.3.jar</systemPath>
+			<systemPath>${basedir}/lib/CKFinderPlugin-FileEditor-2.6.2.1.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.finder</groupId>
 			<artifactId>imageresize</artifactId>
-			<version>2.6.3</version>
+			<version>2.6.2.1</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/CKFinderPlugin-ImageResize-2.6.3.jar</systemPath>
+			<systemPath>${basedir}/lib/CKFinderPlugin-ImageResize-2.6.2.1.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.finder</groupId>
 			<artifactId>watermark</artifactId>
-			<version>2.6.3</version>
+			<version>2.6.2.1</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/CKFinderPlugin-Watermark-2.6.3.jar</systemPath>
+			<systemPath>${basedir}/lib/CKFinderPlugin-Watermark-2.6.2.1.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.finder</groupId>
 			<artifactId>ckfinder</artifactId>
-			<version>2.6.3</version>
+			<version>2.6.2.1</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/CKFinder-2.6.3.jar</systemPath>
+			<systemPath>${basedir}/lib/CKFinder-2.6.2.1.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>net.coobird</groupId>
 			<artifactId>thumbnailator</artifactId>
-			<version>2.6.3</version>
+			<version>0.4.8</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/thumbnailator-0.4.8.jar</systemPath>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-yaml</artifactId>
-			<version>2.10.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>

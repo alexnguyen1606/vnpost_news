@@ -94,19 +94,19 @@ public class NewsService implements INewsService {
     public NewsDTO save(NewsDTO newsDTO) {
         if (newsDTO.getId()==null){
             try {
-                String thumbnail =fileUtils.SaveFile(newsDTO.getThumbnailMultipartFile());
-                if (!thumbnail.equals("")){
-                    newsDTO.setThumbnail(thumbnail);
-                }else {
-                    newsDTO.setThumbnail(SystemConstant.THUMBNAIL_PATH);
-                }
+//                String thumbnail =fileUtils.SaveFile(newsDTO.getThumbnailMultipartFile());
+//                if (!thumbnail.equals("")){
+//                    newsDTO.setThumbnail(thumbnail);
+//                }else {
+//                    newsDTO.setThumbnail(SystemConstant.THUMBNAIL_PATH);
+//                }
                 NewsEntity newsEntity = converter.convertToEntity(newsDTO);
 
                 newsEntity.setCount(0);
                 Long newsId =newsRepository.save(newsEntity).getId();
                 NewsDTO result = findById(newsId);
                 for (SubcribDTO subcribDTO:subcribService.findAll()){
-                    new SendMailThread(newsDTO,subcribDTO,mailService);
+                    Thread threadSendMail = new SendMailThread(result,subcribDTO,mailService);
                 }
                 return result;
             }catch (Exception e){
@@ -123,11 +123,11 @@ public class NewsService implements INewsService {
             try {
                 NewsEntity newsEntityInDb = newsRepository.findById(newsDTO.getId()).get();
                 String thumbnail =fileUtils.SaveFile(newsDTO.getThumbnailMultipartFile());
-                if (!thumbnail.equals("")){
-                    newsDTO.setThumbnail(thumbnail);
-                }else {
-                    newsDTO.setThumbnail(newsEntityInDb.getThumbnail());
-                }
+//                if (!thumbnail.equals("")){
+//                    newsDTO.setThumbnail(thumbnail);
+//                }else {
+//                    newsDTO.setThumbnail(newsEntityInDb.getThumbnail());
+//                }
                 NewsEntity newsEntity = converter.convertToEntity(newsDTO);
                 newsEntity.setCount(newsEntityInDb.getCount());
                 newsEntity.setCreatedBy(newsEntityInDb.getCreatedBy());

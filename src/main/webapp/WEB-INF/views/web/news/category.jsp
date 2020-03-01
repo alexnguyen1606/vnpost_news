@@ -36,6 +36,7 @@
                         </div>
                         <div class="col-md-6">
                             <img src="/images/${item.thumbnail}" alt="">
+                            <%--<img src="${item.thumbnail}" alt="">--%>
                         </div>
                         <div class="col-md-6 news-short-content">
                             <label ><fmt:formatDate type = "both"

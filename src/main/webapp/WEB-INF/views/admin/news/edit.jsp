@@ -1,5 +1,6 @@
 <%@include file="/common/taglib.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -63,6 +64,24 @@
                                         <label class=" control-label " >Ảnh Thumbnail</label>
                                         <form:input type="file"  path="thumbnailMultipartFile" accept="image/*" placeholder="" cssClass="form-control" ></form:input>
                                     </div>
+                                <%--<div class="col-lg-6">--%>
+                                    <%--<h3>B. Ckfinder Button</h3>--%>
+                                    <%--<div class="avatar">--%>
+                                        <%--<img id="imgpreview"--%>
+                                             <%--src="https://yt3.ggpht.com/-f6NCDKG2Ukw/AAAAAAAAAAI/AAAAAAAAAAA/MqMm3rgmqCY/s48-c-k-no-mo-rj-c0xffffff/photo.jpg"--%>
+                                             <%--class="img-fluid" style="max-width: 300px; max-height: 300px;" />--%>
+                                    <%--</div>--%>
+                                    <%--<div class="file-field">--%>
+                                        <%--<p>--%>
+                                            <%--<strong id="xImagePath">Selected Image URL</strong><br /> <form:input path="thumbnail"--%>
+                                                <%--class="btn btn-primary btn-sm waves-effect waves-light"--%>
+                                                <%--type="button" value="Browse Image"--%>
+                                                <%--onclick="BrowseServer( 'Images:/', 'xImagePath' );" ></form:input>--%>
+                                        <%--</p>--%>
+                                    <%--</div>--%>
+
+                                    <%--<p>Note: You should select square image !</p>--%>
+                                <%--</div>--%>
                                     <div class="col-sm-6">
                                         <label class=" control-label" for="title">Tác giả</label>
                                         <form:input type="text"  path="author" value="${viewmodel.author}" placeholder="" cssClass="form-control" ></form:input>
@@ -107,14 +126,52 @@
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
-    $(document).ready(function () {
-       var editor =  CKEDITOR.replace('content',{
-           extraPlugins: 'easyimage',
-           cloudServices_tokenUrl: 'https://localhost:8080/cs-token-endpoint',
-           cloudServices_uploadUrl: 'https://localhost:8080/easyimage/upload/'
-       });
-       CKFinder.setupCKEditor(editor)
-    })
+$(document).ready(function () {
+    var editor =CKEDITOR.replace('content',
+        {
+            filebrowserBrowseUrl : '/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl : '/ckfinder/ckfinder.html?type=Images',
+            filebrowserFlashBrowseUrl : '/ckfinder/ckfinder.html?type=Flash',
+            filebrowserUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl : '/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+        });
+    CKFinder().setupCKEditor(editor);
+})
+
+    /*Avatar start*/
+    function BrowseServer(startupPath, functionData) {
+        // You can use the "CKFinder" class to render CKFinder in a page:
+        var finder = new CKFinder();
+
+        // The path for the installation of CKFinder (default = "/ckfinder/").
+        finder.basePath = '../';
+
+        //Startup path in a form: "Type:/path/to/directory/"
+        finder.startupPath = startupPath;
+
+        // Name of a function which is called when a file is selected in CKFinder.
+        finder.selectActionFunction = SetFileField;
+
+        // Additional data to be passed to the selectActionFunction in a second argument.
+        // We'll use this feature to pass the Id of a field that will be updated.
+        finder.selectActionData = functionData;
+
+        // Name of a function which is called when a thumbnail is selected in CKFinder. Preview img
+        // finder.selectThumbnailActionFunction = ShowThumbnails;
+
+        // Launch CKFinder
+        finder.popup();
+    }
+
+    // This is a sample function which is called when a file is selected in CKFinder.
+    function SetFileField(fileUrl, data) {
+        document.getElementById(data["selectActionData"]).innerHTML = this
+            .getSelectedFile().name;
+        document.getElementById("imgpreview").src = fileUrl;
+        $('#thumbnail').val(fileUrl);
+    }
+    /*Avatar end*/
 </script>
 </body>
 </html>
