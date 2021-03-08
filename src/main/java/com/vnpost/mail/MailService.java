@@ -20,7 +20,6 @@ public class MailService  {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
             mimeMessageHelper.setTo(subcribDTO.getEmail());
-
             mimeMessageHelper.setSubject("[VietNam POST News]");
             StringBuilder content =new StringBuilder("<h2>Bài viết mới nhất</h2><br>");
             content.append("<a");
