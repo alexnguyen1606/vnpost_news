@@ -2,7 +2,7 @@ package com.vnpost.service.impl;
 
 import com.vnpost.converter.PostageDeliveryConverter;
 import com.vnpost.dto.PostageDeliveryDTO;
-import com.vnpost.entity.PostageDeliveryEntity;
+import com.vnpost.repository.entity.PostageDeliveryEntity;
 import com.vnpost.repository.PostageDeliveryRepository;
 import com.vnpost.service.IPostageDeliveryService;
 import com.vnpost.utils.FileUtils;

@@ -1,6 +1,6 @@
 package com.vnpost.repository;
 
-import com.vnpost.entity.NewsEntity;
+import com.vnpost.repository.entity.NewsEntity;
 import com.vnpost.repository.custom.NewsRepositoryCustom;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,5 +21,7 @@ public interface NewsRepository extends JpaRepository<NewsEntity,Long>, NewsRepo
     List<NewsEntity> findByCategoryIdAndStatus(Long subCategory,Integer status);
     List<NewsEntity> findByCategoryIdAndStatus(Long subCategory, Integer status, Pageable pageable);
     List<NewsRepository> findByNameLike(String search);
+
+    NewsEntity findFirstOrderByCountOnDesc();
 
 }

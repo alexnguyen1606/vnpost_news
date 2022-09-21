@@ -2,16 +2,16 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="persistence">
 
-       <class>com.vnpost.entity.UserEntity</class>
-        <class>com.vnpost.entity.NewsEntity</class>
-        <class>com.vnpost.entity.RoleEntity</class>
-        <class>com.vnpost.entity.CategoryEntity</class>
-        <class>com.vnpost.entity.ParagraphEntity</class>
-        <class>com.vnpost.entity.SubcribEntity</class>
-        <class>com.vnpost.entity.PostageFinaceEntity</class>
-        <class>com.vnpost.entity.PostageDeliveryEntity</class>
-        <class>com.vnpost.entity.DeliveryServiceEntity</class>
-        <class>com.vnpost.entity.MediaDistributionEntity</class>
+       <class>com.vnpost.repository.entity.UserEntity</class>
+        <class>com.vnpost.repository.entity.NewsEntity</class>
+        <class>com.vnpost.repository.entity.RoleEntity</class>
+        <class>com.vnpost.repository.entity.CategoryEntity</class>
+        <class>com.vnpost.repository.entity.ParagraphEntity</class>
+        <class>com.vnpost.repository.entity.SubcribEntity</class>
+        <class>com.vnpost.repository.entity.PostageFinaceEntity</class>
+        <class>com.vnpost.repository.entity.PostageDeliveryEntity</class>
+        <class>com.vnpost.repository.entity.DeliveryServiceEntity</class>
+        <class>com.vnpost.repository.entity.MediaDistributionEntity</class>
     </persistence-unit>
 </persistence>
 

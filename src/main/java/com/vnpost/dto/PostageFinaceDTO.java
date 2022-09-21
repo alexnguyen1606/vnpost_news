@@ -1,6 +1,5 @@
 package com.vnpost.dto;
 
-import com.vnpost.annotations.Name;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;

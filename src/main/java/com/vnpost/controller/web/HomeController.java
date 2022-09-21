@@ -2,7 +2,6 @@ package com.vnpost.controller.web;
 
 
 
-import com.vnpost.builder.NewsBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -19,8 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class HomeController {
     @GetMapping("/")
     public ModelAndView index(){
-        ModelAndView mav = new ModelAndView("web/home");
-        return mav;
+        return new ModelAndView("web/home");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

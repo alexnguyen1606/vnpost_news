@@ -1,26 +1,22 @@
 package com.vnpost.converter;
 
 import com.vnpost.dto.MediaDistributionDTO;
-import com.vnpost.entity.MediaDistributionEntity;
+import com.vnpost.repository.entity.MediaDistributionEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MediaDistributionConverter implements IDTO<MediaDistributionDTO>,IEntity<MediaDistributionEntity> {
+public class MediaDistributionConverter implements IConverter<MediaDistributionDTO, MediaDistributionEntity> {
     @Autowired
     private ModelMapper modelMapper;
     @Override
-    public MediaDistributionDTO convertToDTO(Object object) {
-        MediaDistributionEntity entity = (MediaDistributionEntity) object;
-        MediaDistributionDTO dto = modelMapper.map(entity,MediaDistributionDTO.class);
-        return dto;
+    public MediaDistributionDTO convertToDTO(MediaDistributionEntity object) {
+        return modelMapper.map(object,MediaDistributionDTO.class);
     }
 
     @Override
-    public MediaDistributionEntity convertToEntity(Object object) {
-        MediaDistributionDTO dto = (MediaDistributionDTO) object;
-        MediaDistributionEntity entity = modelMapper.map(dto,MediaDistributionEntity.class);
-        return entity;
+    public MediaDistributionEntity convertToEntity(MediaDistributionDTO object) {
+        return modelMapper.map(object,MediaDistributionEntity.class);
     }
 }

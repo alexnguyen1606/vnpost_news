@@ -1,12 +1,10 @@
 package com.vnpost.controller.admin;
 
-import com.vnpost.builder.NewsBuilder;
-import com.vnpost.constant.SystemConstant;
+import com.vnpost.utils.constant.SystemConstant;
 import com.vnpost.dto.BaseDTO;
 import com.vnpost.dto.NewsDTO;
 import com.vnpost.service.ICategoryService;
 import com.vnpost.service.INewsService;
-import com.vnpost.utils.FormUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,9 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller(value = "adminNewsController")
 @RequestMapping("/admin/news")

@@ -1,12 +1,11 @@
 package com.vnpost.customtag;
 
-import com.vnpost.annotations.Name;
+import com.vnpost.customtag.annotation.Name;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.lang.reflect.Field;

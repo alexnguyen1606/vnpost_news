@@ -1,8 +1,7 @@
 package com.vnpost.dto;
 
-import com.vnpost.annotations.Name;
-import com.vnpost.annotations.Password;
-import com.vnpost.annotations.Username;
+import com.vnpost.validator.annotations.Password;
+import com.vnpost.validator.annotations.Username;
 import lombok.Getter;
 import lombok.Setter;
 

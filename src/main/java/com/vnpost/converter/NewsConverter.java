@@ -1,8 +1,7 @@
 package com.vnpost.converter;
 
-import com.vnpost.dto.CategoryDTO;
 import com.vnpost.dto.NewsDTO;
-import com.vnpost.entity.NewsEntity;
+import com.vnpost.repository.entity.NewsEntity;
 import com.vnpost.service.impl.CategoryService;
 import com.vnpost.utils.StringUtils;
 import org.modelmapper.ModelMapper;

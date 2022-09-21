@@ -1,7 +1,6 @@
 package com.vnpost.customtag;
 
-import com.vnpost.annotations.Bookmark;
-import com.vnpost.annotations.Name;
+import com.vnpost.customtag.annotation.Bookmark;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,27 +1,20 @@
 package com.vnpost.controller.web;
 
-import com.vnpost.builder.NewsBuilder;
-import com.vnpost.constant.SystemConstant;
-import com.vnpost.dto.BaseDTO;
-import com.vnpost.dto.IndexDTO;
+import com.vnpost.dto.NewsBuilder;
+import com.vnpost.utils.constant.SystemConstant;
 import com.vnpost.dto.NewsDTO;
 import com.vnpost.service.INewsService;
 import com.vnpost.service.impl.CategoryService;
 import com.vnpost.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller(value = "webNewsController")
 public class NewsController {

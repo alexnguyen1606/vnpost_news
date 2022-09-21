@@ -4,7 +4,7 @@ import com.vnpost.converter.CategoryConverter;
 import com.vnpost.dto.CategoryDTO;
 import com.vnpost.dto.IndexDTO;
 import com.vnpost.dto.NewsDTO;
-import com.vnpost.entity.CategoryEntity;
+import com.vnpost.repository.entity.CategoryEntity;
 import com.vnpost.repository.CategoryRepository;
 import com.vnpost.service.ICategoryService;
 import com.vnpost.service.INewsService;
@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -81,10 +83,8 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public void delete(Long[] ids) {
-        for (Long id : ids){
-            if (id!=null){
-                categoryRepository.deleteById(id);
-            }
-        }
+        Arrays.stream(ids)
+                .filter(Objects::nonNull)
+                .forEach(categoryRepository::deleteById);
     }
 }

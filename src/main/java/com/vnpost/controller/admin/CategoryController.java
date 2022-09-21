@@ -15,47 +15,51 @@ import org.springframework.web.servlet.ModelAndView;
 public class CategoryController {
     @Autowired
     private ICategoryService categoryService;
+
     @GetMapping
     public ModelAndView listCategory(
-       @RequestParam(name = "page",required = false,defaultValue = "1") Integer page
-       ,@RequestParam(name = "size",required = false,defaultValue = "7") Integer size
-    ){
+            @RequestParam(name = "page", required = false, defaultValue = "1") Integer page
+            , @RequestParam(name = "size", required = false, defaultValue = "7") Integer size
+    ) {
         BaseDTO baseModel = new BaseDTO();
         Integer totalItem = categoryService.findAll().size();
         baseModel.setSize(size);
         baseModel.setPage(page);
-        baseModel.setTotalPages((int)Math.ceil((double)totalItem/size));
-        Pageable pageable = PageRequest.of(page-1,size);
+        baseModel.setTotalPages((int) Math.ceil((double) totalItem / size));
+        Pageable pageable = PageRequest.of(page - 1, size);
         ModelAndView mav = new ModelAndView("admin/category/list");
-        mav.addObject("category",categoryService.findAll(pageable));
-        mav.addObject("model",baseModel);
+        mav.addObject("category", categoryService.findAll(pageable));
+        mav.addObject("model", baseModel);
         return mav;
     }
+
     @GetMapping("/edit/{id}")
-    public ModelAndView editCategory(@PathVariable(value = "id",required = false) Long categoryId){
+    public ModelAndView editCategory(@PathVariable(value = "id", required = false) Long categoryId) {
         ModelAndView mav = new ModelAndView("admin/category/edit");
-        if (categoryId==null){
-            mav.addObject("category",new CategoryDTO());
-        }else {
-            mav.addObject("category",categoryService.findById(categoryId));
+        if (categoryId == null) {
+            mav.addObject("category", new CategoryDTO());
+        } else {
+            mav.addObject("category", categoryService.findById(categoryId));
         }
         return mav;
     }
+
     @GetMapping("/create")
-    public ModelAndView createCategory(){
+    public ModelAndView createCategory() {
         ModelAndView mav = new ModelAndView("admin/category/edit");
-            mav.addObject("category",new CategoryDTO());
+        mav.addObject("category", new CategoryDTO());
         return mav;
     }
+
     @PostMapping("/edit")
-    public ModelAndView save(@ModelAttribute("category") CategoryDTO category){
+    public ModelAndView save(@ModelAttribute("category") CategoryDTO category) {
         ModelAndView mav = new ModelAndView("/admin/category/list");
-        if (category.getId()==null){
+        if (category.getId() == null) {
             categoryService.save(category);
-        }else {
+        } else {
             categoryService.update(category);
         }
-        mav.addObject("category",categoryService.findAll());
+        mav.addObject("category", categoryService.findAll());
         return mav;
     }
 }

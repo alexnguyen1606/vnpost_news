@@ -1,7 +1,7 @@
 package com.vnpost.converter;
 
 import com.vnpost.dto.CategoryDTO;
-import com.vnpost.entity.CategoryEntity;
+import com.vnpost.repository.entity.CategoryEntity;
 import com.vnpost.utils.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

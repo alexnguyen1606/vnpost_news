@@ -2,7 +2,7 @@ package com.vnpost.service.impl;
 
 import com.vnpost.converter.ParagraphConverter;
 import com.vnpost.dto.ParagraphDTO;
-import com.vnpost.entity.ParagraphEntity;
+import com.vnpost.repository.entity.ParagraphEntity;
 import com.vnpost.repository.ParagraphRepository;
 import com.vnpost.service.INewsService;
 import com.vnpost.service.IParagraphService;
@@ -10,9 +10,6 @@ import com.vnpost.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ParagraphService implements IParagraphService {

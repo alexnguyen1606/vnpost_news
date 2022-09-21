@@ -1,6 +1,6 @@
 package com.vnpost.service;
 
-import com.vnpost.builder.NewsBuilder;
+import com.vnpost.dto.NewsBuilder;
 import com.vnpost.dto.NewsDTO;
 import org.springframework.data.domain.Pageable;
 

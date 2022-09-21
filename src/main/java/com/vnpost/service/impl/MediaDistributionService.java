@@ -1,13 +1,15 @@
 package com.vnpost.service.impl;
 
-import com.vnpost.constant.SystemConstant;
+import com.vnpost.utils.constant.SystemConstant;
 import com.vnpost.converter.MediaDistributionConverter;
 import com.vnpost.dto.MediaDistributionDTO;
-import com.vnpost.entity.MediaDistributionEntity;
 import com.vnpost.repository.MediaDistributionRepository;
+import com.vnpost.repository.entity.MediaDistributionEntity;
 import com.vnpost.service.IMediaDistributionService;
 import com.vnpost.utils.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -15,31 +17,29 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class MediaDistributionService implements IMediaDistributionService {
-    @Autowired
-    private MediaDistributionConverter converter;
-    @Autowired
-    private MediaDistributionRepository distributionRepository;
-    @Autowired
-    private  FileUtils fileUtils;
+    MediaDistributionConverter converter;
+    MediaDistributionRepository distributionRepository;
+    FileUtils fileUtils;
     @Override
     public List<MediaDistributionDTO> findAll() {
         return distributionRepository.findAll().stream()
-                .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+                .map(converter::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<MediaDistributionDTO> findAll(Pageable pageable) {
         return distributionRepository.findAll(pageable).stream()
-                .map(item -> converter.convertToDTO(item)).collect(Collectors.toList());
+                .map(converter::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
     public MediaDistributionDTO findById(Long id) {
-        if (id!=null){
-            return converter.convertToDTO(distributionRepository.findById(id));
-        }
-        return new MediaDistributionDTO();
+        return converter.convertToDTO(distributionRepository.findById(id));
     }
 
     @Override

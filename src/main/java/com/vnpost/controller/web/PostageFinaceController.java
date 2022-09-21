@@ -16,23 +16,25 @@ import org.springframework.web.servlet.ModelAndView;
 public class PostageFinaceController {
     @Autowired
     private IPostageFinaceService postageFinaceService;
+
     @GetMapping("/dich-vu/nhom/tai-chinh-buu-chinh")
     public ModelAndView indexService(
-            @RequestParam(name = "page",required = false,defaultValue = "6") Integer page
-            ,@RequestParam(name = "size",required = false,defaultValue = "1") Integer size
-    ){
+            @RequestParam(name = "page", required = false, defaultValue = "6") Integer page
+            , @RequestParam(name = "size", required = false, defaultValue = "1") Integer size
+    ) {
         ModelAndView mav = new ModelAndView("web/service/postfinace/index");
         Integer totalItem = postageFinaceService.count();
-        BaseDTO baseModel = new BaseDTO(page,size,(int)Math.ceil((double)totalItem/size));
-        Pageable pageable = PageRequest.of(page-1,size);
-        mav.addObject("postfinace",postageFinaceService.findAll(pageable));
-        mav.addObject("model",baseModel);
+        BaseDTO baseModel = new BaseDTO(page, size, (int) Math.ceil((double) totalItem / size));
+        Pageable pageable = PageRequest.of(page - 1, size);
+        mav.addObject("postfinace", postageFinaceService.findAll(pageable));
+        mav.addObject("model", baseModel);
         return mav;
     }
+
     @GetMapping("/dich-vu/tai-chinh-buu-chinh/chi-tiet/{id}")
-    public ModelAndView detail(@PathVariable("id") Long id){
+    public ModelAndView detail(@PathVariable("id") Long id) {
         ModelAndView mav = new ModelAndView("web/service/postfinace/detail");
-        mav.addObject("service",postageFinaceService.findById(id));
+        mav.addObject("service", postageFinaceService.findById(id));
         return mav;
     }
 

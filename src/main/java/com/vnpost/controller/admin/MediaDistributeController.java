@@ -16,36 +16,40 @@ import org.springframework.web.servlet.view.RedirectView;
 public class MediaDistributeController {
     @Autowired
     private IMediaDistributionService mediaDistributionService;
+
     @GetMapping("/admin/media-distribute")
     public ModelAndView list(
-            @RequestParam(name = "page",required = false,defaultValue = "1") Integer page
-            ,@RequestParam(name = "size",required = false,defaultValue = "7") Integer size
-    ){
+            @RequestParam(name = "page", required = false, defaultValue = "1") Integer page
+            , @RequestParam(name = "size", required = false, defaultValue = "7") Integer size
+    ) {
         ModelAndView mav = new ModelAndView("admin/service/mediadistribute/list");
         Integer totalItems = mediaDistributionService.count();
-        BaseDTO baseModel = new BaseDTO(page,size,(int)Math.ceil((double)totalItems/size));
-        Pageable pageable = PageRequest.of(page-1,size);
-        mav.addObject("service",mediaDistributionService.findAll(pageable));
-        mav.addObject("model",baseModel);
+        BaseDTO baseModel = new BaseDTO(page, size, (int) Math.ceil((double) totalItems / size));
+        Pageable pageable = PageRequest.of(page - 1, size);
+        mav.addObject("service", mediaDistributionService.findAll(pageable));
+        mav.addObject("model", baseModel);
         return mav;
     }
+
     @GetMapping("/admin/media-distribute/create")
-    public ModelAndView edit(){
+    public ModelAndView edit() {
         ModelAndView mav = new ModelAndView("admin/service/mediadistribute/edit");
-        mav.addObject("service",new MediaDistributionDTO());
+        mav.addObject("service", new MediaDistributionDTO());
         return mav;
     }
+
     @GetMapping("/admin/media-distribute/edit/{id}")
-    public ModelAndView edit(@PathVariable("id") Long id){
+    public ModelAndView edit(@PathVariable("id") Long id) {
         ModelAndView mav = new ModelAndView("admin/service/mediadistribute/edit");
-        mav.addObject("service",mediaDistributionService.findById(id));
+        mav.addObject("service", mediaDistributionService.findById(id));
         return mav;
     }
+
     @PostMapping("/admin/media-distribute/edit")
-    public RedirectView edit(@ModelAttribute("service") MediaDistributionDTO mediaDistributionDTO ){
-        if (mediaDistributionDTO.getId()==null){
+    public RedirectView edit(@ModelAttribute("service") MediaDistributionDTO mediaDistributionDTO) {
+        if (mediaDistributionDTO.getId() == null) {
             mediaDistributionService.save(mediaDistributionDTO);
-        }else {
+        } else {
             mediaDistributionService.update(mediaDistributionDTO);
         }
         return new RedirectView("/admin/media-distribute");

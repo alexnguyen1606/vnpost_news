@@ -1,6 +1,6 @@
 package com.vnpost.dto;
 
-import com.vnpost.entity.UserEntity;
+import com.vnpost.repository.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

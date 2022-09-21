@@ -1,26 +1,23 @@
 package com.vnpost.converter;
 
 import com.vnpost.dto.PostageDeliveryDTO;
-import com.vnpost.entity.PostageDeliveryEntity;
+import com.vnpost.repository.entity.PostageDeliveryEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PostageDeliveryConverter implements IDTO<PostageDeliveryDTO>,IEntity<PostageDeliveryEntity> {
+public class PostageDeliveryConverter implements IConverter<PostageDeliveryDTO, PostageDeliveryEntity> {
     @Autowired
     private ModelMapper modelMapper;
+
     @Override
-    public PostageDeliveryDTO convertToDTO(Object object) {
-        PostageDeliveryEntity entity = (PostageDeliveryEntity) object;
-        PostageDeliveryDTO deliveryDTO = modelMapper.map(entity,PostageDeliveryDTO.class);
-        return deliveryDTO;
+    public PostageDeliveryDTO convertToDTO(PostageDeliveryEntity object) {
+        return modelMapper.map(object, PostageDeliveryDTO.class);
     }
 
     @Override
-    public PostageDeliveryEntity convertToEntity(Object object) {
-        PostageDeliveryDTO dto = (PostageDeliveryDTO) object;
-        PostageDeliveryEntity entity = modelMapper.map(dto,PostageDeliveryEntity.class);
-        return entity;
+    public PostageDeliveryEntity convertToEntity(PostageDeliveryDTO object) {
+        return modelMapper.map(object, PostageDeliveryEntity.class);
     }
 }

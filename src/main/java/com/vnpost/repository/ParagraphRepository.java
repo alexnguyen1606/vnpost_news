@@ -1,6 +1,6 @@
 package com.vnpost.repository;
 
-import com.vnpost.entity.ParagraphEntity;
+import com.vnpost.repository.entity.ParagraphEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

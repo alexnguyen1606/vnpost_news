@@ -1,6 +1,6 @@
 package com.vnpost.repository;
 
-import com.vnpost.entity.DeliveryServiceEntity;
+import com.vnpost.repository.entity.DeliveryServiceEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 

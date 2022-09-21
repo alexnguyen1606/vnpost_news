@@ -1,7 +1,7 @@
 package com.vnpost.repository;
 
-import com.vnpost.entity.RoleEntity;
-import com.vnpost.entity.UserEntity;
+import com.vnpost.repository.entity.RoleEntity;
+import com.vnpost.repository.entity.UserEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

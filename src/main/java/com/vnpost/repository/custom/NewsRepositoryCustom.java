@@ -1,7 +1,7 @@
 package com.vnpost.repository.custom;
 
-import com.vnpost.builder.NewsBuilder;
-import com.vnpost.entity.NewsEntity;
+import com.vnpost.dto.NewsBuilder;
+import com.vnpost.repository.entity.NewsEntity;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

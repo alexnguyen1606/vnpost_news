@@ -1,6 +1,6 @@
 package com.vnpost.validator;
 
-import com.vnpost.annotations.Password;
+import com.vnpost.validator.annotations.Password;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
