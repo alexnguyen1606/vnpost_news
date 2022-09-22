@@ -14,13 +14,13 @@ public class UserApi {
     private UserService userService;
 
     @PostMapping
-    public UserDTO save(@Valid @RequestBody UserDTO userDTO) {
-        return userService.save(userDTO);
+    public void save(@Valid @RequestBody UserDTO userDTO) {
+        userService.save(userDTO);
     }
 
     @PutMapping
-    public UserDTO update(@Valid @RequestBody UserDTO userDTO) {
-        return userService.update(userDTO);
+    public void update(@Valid @RequestBody UserDTO userDTO) {
+        userService.update(userDTO);
     }
 
     @DeleteMapping
@@ -29,21 +29,17 @@ public class UserApi {
     }
 
     @PutMapping("/disable")
-    public UserDTO disable(@RequestBody UserDTO userDTO) {
-        System.out.println("point");
+    public void disable(@RequestBody UserDTO userDTO) {
         userService.disable(userDTO.getListId());
-        return userDTO;
     }
 
     @PutMapping("/reset")
-    public UserDTO reset(@RequestBody UserDTO userDTO) {
+    public void reset(@RequestBody UserDTO userDTO) {
         userService.resetAll(userDTO.getListId());
-        return userDTO;
     }
 
     @PutMapping("/enable")
-    public UserDTO enable(@RequestBody UserDTO userDTO) {
+    public void enable(@RequestBody UserDTO userDTO) {
         userService.enable(userDTO.getListId());
-        return userDTO;
     }
 }

@@ -19,16 +19,14 @@ public class NameTag extends TagSupport {
     public int doStartTag() throws JspException {
         try {
             Object object = pageContext.getRequest().getAttribute(objectName);
-            Class clazz = object.getClass();
+            Class<?> clazz = object.getClass();
             Field field = clazz.getDeclaredField(fieldName);
             if (field.isAnnotationPresent(Name.class)) {
-                Name lableLookup = field.getAnnotation(Name.class);
+                Name labelLookup = field.getAnnotation(Name.class);
                 JspWriter out = pageContext.getOut();
-                out.print(lableLookup.value());
+                out.print(labelLookup.value());
             }
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (NoSuchFieldException | IOException e) {
             e.printStackTrace();
         }
         return EVAL_PAGE;

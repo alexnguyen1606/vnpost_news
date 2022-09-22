@@ -23,13 +23,13 @@ public class CustomSuccessHandler  extends SimpleUrlAuthenticationSuccessHandler
 
     @Override
     protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String targetUrl = determindTargetUrl(authentication);
+        String targetUrl = determineTargetUrl(authentication);
         if (response.isCommitted()){
             return;
         }
         redirectStrategy.sendRedirect(request,response,targetUrl);
     }
-    private String determindTargetUrl(Authentication authentication){
+    private String determineTargetUrl(Authentication authentication){
         String url = "";
         List<String>roles = SecurityUtils.getAutherities();
         if (isAdmin(roles)){
@@ -41,15 +41,9 @@ public class CustomSuccessHandler  extends SimpleUrlAuthenticationSuccessHandler
     }
 
     private boolean isAdmin(List<String> roles) {
-        if (roles.contains("ADMIN"))
-            return true;
-        else
-            return false;
+        return roles.contains("ADMIN");
     }
     private boolean isUser(List<String> roles){
-        if (roles.contains("USER"))
-            return true;
-        else
-            return false;
+        return roles.contains("USER");
     }
 }

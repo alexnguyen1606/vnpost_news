@@ -8,13 +8,13 @@ public class StringUtils {
         StringBuilder builder = new StringBuilder();
         for (int i=0;i<array.length-1;i++){
             if ((array[i]=='-') && (array[i]==array[i+1])){
-                array= (char[]) removeElement(array,i);
+                array = removeElement(array,i);
                 i--;
             }
         }
 
-        for (int i=0;i<array.length;i++){
-            builder.append(array[i]);
+        for (char c : array) {
+            builder.append(c);
         }
 
         return builder.toString();
@@ -24,8 +24,8 @@ public class StringUtils {
                 .replaceAll("[^a-zA-Z0-9]", " ").trim()
                 .replaceAll("[^a-zA-Z0-9]", " ").toLowerCase().toCharArray();
         StringBuilder builder = new StringBuilder();
-        for (int i=0;i<array.length;i++){
-            builder.append(array[i]);
+        for (char c : array) {
+            builder.append(c);
         }
         return builder.toString();
     }

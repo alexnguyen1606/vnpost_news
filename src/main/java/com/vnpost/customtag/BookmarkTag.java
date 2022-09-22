@@ -20,16 +20,14 @@ public class BookmarkTag extends TagSupport {
     public int doStartTag() throws JspException {
         try {
             Object object = pageContext.getRequest().getAttribute(objectName);
-            Class clazz = object.getClass();
+            Class<?> clazz = object.getClass();
             Field field = clazz.getDeclaredField(fieldName);
             if (field.isAnnotationPresent(Bookmark.class)) {
-                Bookmark lableLookup = field.getAnnotation(Bookmark.class);
+                Bookmark labelLookup = field.getAnnotation(Bookmark.class);
                 JspWriter out = pageContext.getOut();
-                out.print(lableLookup.value());
+                out.print(labelLookup.value());
             }
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (NoSuchFieldException | IOException e) {
             e.printStackTrace();
         }
         return EVAL_PAGE;
